@@ -1,12 +1,8 @@
 import axios from "axios";
+import request from "./interceptors/reques";
+import response from "./interceptors/response";
 const instance = axios.create();
 const CancelToken = axios.CancelToken;
-instance.interceptors.request.use(config => {
-  return config;
-});
-instance.interceptors.response.use(({ data }) => {
-  return data;
-});
 //暂时没想好要不要用cancelTotal
 export const cancelTotal = [];
 export const apiGet = (url, params = {}) => {
@@ -41,3 +37,8 @@ export const apiDelete = (url, params = {}) => {
     ...params
   });
 };
+
+instance.interceptors.request.use(request);
+instance.interceptors.response.use(response);
+
+export default instance;
