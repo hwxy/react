@@ -107,12 +107,23 @@ module.exports = function(webpackEnv) {
       }
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: {
-          sourceMap: isEnvProduction && shouldUseSourceMap
-        }
-      });
+      if (preProcessor === "sass-loader") {
+        loaders.push({
+          loader: require.resolve(preProcessor),
+          options: {
+            sourceMap: isEnvProduction && shouldUseSourceMap,
+            data:
+              "@import '@/asset/sass/_var.scss';@import '@/asset/sass/tool/index.scss';"
+          }
+        });
+      } else {
+        loaders.push({
+          loader: require.resolve(preProcessor),
+          options: {
+            sourceMap: isEnvProduction && shouldUseSourceMap
+          }
+        });
+      }
     }
     return loaders;
   };

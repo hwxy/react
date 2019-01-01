@@ -1,0 +1,32 @@
+// 工具样式
+
+.text-ell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clearmid {
+  height: 100%;
+  width: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.clearfix {
+  &::after{
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+    content: '';
+  }
+}
+
+.abs-c{
+  position: absolute !important;
+  z-index: 20;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
