@@ -21,7 +21,6 @@ const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
-
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -113,7 +112,7 @@ module.exports = function(webpackEnv) {
           options: {
             sourceMap: isEnvProduction && shouldUseSourceMap,
             data:
-              "@import '@/asset/sass/_var.scss';@import '@/asset/sass/tool/index.scss';"
+              "@import '@/asset/sass/_var.module.scss';@import '@/asset/sass/tool/index.scss';"
           }
         });
       } else {
@@ -455,7 +454,8 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                   modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent
+                  localIdentName: "[name]__[local]___[hash:base64:5]"
+                  // getLocalIdent: getCSSModuleLocalIdent
                 },
                 "sass-loader"
               )

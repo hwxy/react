@@ -1,9 +1,18 @@
 //和vue还是有区别的
 {
-    "presets": [
-        "react-app"
+  "presets": ["react-app"],
+  "plugins": [
+    [
+      "react-css-modules",
+      {
+        "generateScopedName": "[name]__[local]___[hash:base64:5]",
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+        }
+      }
     ],
-    "plugins": [
-        ["import", { "libraryName": "antd-mobile", "style": "css" }] // `style: true` 会加载 less 文件
-    ]
+    ["import", { "libraryName": "antd-mobile", "style": "css" }] // `style: true` 会加载 less 文件
+  ]
 }

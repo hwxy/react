@@ -69,10 +69,13 @@
     "adaptive.js": "0.0.2",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
+    "babel-plugin-react-css-modules": "^5.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "node-sass": "^4.11.0",
+    "postcss-scss": "^2.0.0",
     "prettier": "^1.15.3",
     "px2rem-loader": "^0.1.9",
+    "react-css-modules": "^4.7.8",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "sass-loader": "^7.1.0"

@@ -1,9 +1,7 @@
-import "@/asset/sass/views/mall-homepage";
-// import { TabBar } from "antd-mobile";
+import "../../asset/sass/views/mall-homepage.module.scss";
 import React from "react";
-
-import { Tabs, WhiteSpace } from "antd-mobile";
-
+import { Tabs } from "antd-mobile";
+import { Link } from "react-router-dom";
 class HomePage extends React.Component {
   renderContent = tab => (
     <div
@@ -40,6 +38,10 @@ class HomePage extends React.Component {
         >
           {this.renderContent}
         </Tabs>
+        <div styleName="cell">123123</div>
+        <Link className="login" to="/login">
+          login
+        </Link>
       </div>
     );
   }

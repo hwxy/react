@@ -1,4 +1,5 @@
+import style from "@/asset/sass/views/mall-login.module";
 const Login = () => {
-  return <div>login</div>;
+  return <div className={style.login}>login</div>;
 };
 export default Login;
