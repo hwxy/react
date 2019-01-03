@@ -348,7 +348,6 @@ module.exports = function(webpackEnv) {
                 customize: require.resolve(
                   "babel-preset-react-app/webpack-overrides"
                 ),
-
                 plugins: [
                   [
                     require.resolve("babel-plugin-named-asset-import"),
@@ -376,7 +375,7 @@ module.exports = function(webpackEnv) {
               exclude: /@babel(?:\/|\\{1,2})runtime/,
               loader: require.resolve("babel-loader"),
               options: {
-                babelrc: true,
+                babelrc: false,
                 configFile: false,
                 compact: false,
                 presets: [
