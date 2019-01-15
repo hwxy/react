@@ -1,4 +1,4 @@
-import "../../asset/sass/views/mall-homepage.module.scss";
+import "@/asset/sass/views/mall-homepage.module.scss";
 import React from "react";
 import { Tabs } from "antd-mobile";
 import { Link } from "react-router-dom";
