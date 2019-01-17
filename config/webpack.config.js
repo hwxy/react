@@ -112,7 +112,7 @@ module.exports = function(webpackEnv) {
           options: {
             sourceMap: isEnvProduction && shouldUseSourceMap,
             data:
-              "@import '@/asset/sass/_var.module.scss';@import '@/asset/sass/tool/index.scss';"
+              "@import '@/asset/sass/_var.scss';@import '@/asset/sass/tool/index.scss';"
           }
         });
       } else {
@@ -278,7 +278,9 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
-        "@": path.join(__dirname, "..", "src")
+        "@": path.join(__dirname, "..", "src"),
+        "won-service": path.join(__dirname, "..", "src/won-service"),
+        "won-common": path.join(__dirname, "..", "src/won-service/common")
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

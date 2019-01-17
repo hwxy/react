@@ -1,0 +1,18 @@
+.homepage-nav{
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  height: 80px;
+  background: #fff;
+  border-top: 1px solid #EEE;
+  z-index: 999;
+}
+.nav{
+  display: flex;
+}
+.nav__icon{
+  flex: 1;
+  height: 100px;
+  text-align: center;
+  line-height: 80px;
+}
