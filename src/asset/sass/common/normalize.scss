@@ -86,6 +86,7 @@ pre {
 a {
   background-color: transparent;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /**
@@ -93,6 +94,7 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
+//标记一个缩写 为浏览器、拼写检查和搜索引擎提供有用的信息
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
@@ -167,10 +169,11 @@ img {
  * 1. Change the font styles in all browsers.
  * 2. Remove the margin in Firefox and Safari.
  */
+//optgroup与select连用
 
 button,
 input,
-optgroup,
+optgroup, 
 select,
 textarea {
   font-family: inherit; /* 1 */
@@ -237,6 +240,8 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 
+//fieldset 和 legend 连用
+
 fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
@@ -261,6 +266,7 @@ legend {
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 
+//进度条
 progress {
   vertical-align: baseline;
 }

@@ -13,6 +13,9 @@
 .nav__icon{
   flex: 1;
   height: 100px;
-  text-align: center;
-  line-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $black;
 }
