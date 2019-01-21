@@ -1,5 +1,8 @@
 import "@/asset/sass/views/mall-login.module.scss";
-const Login = () => {
-  return <div styleName="login">login</div>;
-};
+import React from "react";
+class Login extends React.Component {
+  render() {
+    return <div styleName="login">login</div>;
+  }
+}
 export default Login;

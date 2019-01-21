@@ -1,4 +1,4 @@
-.homepage-nav{
+.container{
   width: 100%;
   position: fixed;
   bottom: 0px;
@@ -10,9 +10,15 @@
 .nav{
   display: flex;
 }
-.nav__icon{
+.nav-icon{
   flex: 1;
   height: 100px;
-  text-align: center;
-  line-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $black;
+}
+.nav-active{
+  color: $origin;
 }

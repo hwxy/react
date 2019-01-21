@@ -1,7 +1,6 @@
 import "@/asset/sass/views/icon.module.scss";
-// import { Link } from "react-router-dom";
-import HomepageNav from "won-common/homepage-nav";
-const Icon = () => {
+import Navigation from "won-common/navigation";
+const Icon = props => {
   let list = new Array(159).fill(0);
   list = list.map((v, i) => {
     return (
@@ -14,7 +13,7 @@ const Icon = () => {
   return (
     <div styleName="icon-container">
       {list}
-      <HomepageNav />
+      <Navigation {...props} />
     </div>
   );
 };
