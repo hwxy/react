@@ -8,6 +8,11 @@
       display: none !important;
     } 
   } 
+  .top-swiper.dots-show{
+    .slider-decorator-2{
+      display: none;
+    }
+  }
 }
 
 .swiper-block{

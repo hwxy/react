@@ -22,7 +22,13 @@ class SwiperDemo extends React.Component {
   render() {
     return (
       <div className="swiper-page">
-        <Carousel autoplay={true} wrapAround={true}>
+        <Carousel
+          autoplay={true}
+          wrapAround={true}
+          className={`top-swiper ${
+            this.state.swiperList.length > 1 ? "" : "dots-show"
+          }`}
+        >
           {this.state.swiperList.map((item, index) => {
             return (
               <div
