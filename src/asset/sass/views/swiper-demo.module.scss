@@ -1,9 +1,24 @@
-.swiper-page{
-  width: 100%;
-  padding: 10px;
+
+:global{
+  .swiper-page{
+    width: 100%;
+    padding: 16px;
+    border-radius: 6px;
+    .slider-decorator-0,.slider-decorator-1{
+      display: none !important;
+    } 
+  } 
+  .top-swiper.dots-show{
+    .slider-decorator-2{
+      display: none;
+    }
+  }
 }
+
 .swiper-block{
-  width: 345px;
+  width: 100%;
   height: 200px;
   box-sizing: border-box;
 } 
+
+
