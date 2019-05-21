@@ -11,9 +11,7 @@ const Router = () => {
   });
   return (
     <HashRouter>
-      <div>
-        <Switch>{route}</Switch>
-      </div>
+      <Switch>{route}</Switch>
     </HashRouter>
   );
 };

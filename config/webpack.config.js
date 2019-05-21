@@ -96,14 +96,14 @@ module.exports = function(webpackEnv) {
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap
         }
-      },
-      {
-        loader: "px2rem-loader",
-        options: {
-          remUni: 75,
-          remPrecision: 2
-        }
       }
+      // {
+      //   loader: "px2rem-loader",
+      //   options: {
+      //     remUni: 75,
+      //     remPrecision: 2
+      //   }
+      // }
     ].filter(Boolean);
     if (preProcessor) {
       if (preProcessor === "sass-loader") {
@@ -280,7 +280,8 @@ module.exports = function(webpackEnv) {
         "react-native": "react-native-web",
         "@": path.join(__dirname, "..", "src"),
         "won-service": path.join(__dirname, "..", "src/won-service"),
-        "won-common": path.join(__dirname, "..", "src/won-service/common")
+        "won-common": path.join(__dirname, "..", "src/won-service/common"),
+        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp")
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

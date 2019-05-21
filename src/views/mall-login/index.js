@@ -1,7 +1,9 @@
 import "@/asset/sass/views/mall-login.module.scss";
 import { List, InputItem, Button, WingBlank } from "antd-mobile";
+
 //支持react 和react-native 的表单校验 和element 一样
 import { createForm } from "rc-form";
+
 import React from "react";
 class Login extends React.Component {
   state = {
@@ -30,19 +32,14 @@ class Login extends React.Component {
   };
   render() {
     const { getFieldProps, getFieldError } = this.props.form;
-    const submitStyle = {
-      height: "1.07rem",
-      lineHeight: "1.07rem",
-      fontSize: "0.4rem"
-    };
     return (
-      <React.Fragment>
+      <div styleName="container">
         <form>
           <div styleName="title">
             <i className="icon-161 f-l" />
             <span className="pr40">登录</span>
           </div>
-          <List className="mt140">
+          <List styleName="login-content">
             <InputItem
               data-role="login-input"
               {...getFieldProps("account", {
@@ -58,7 +55,7 @@ class Login extends React.Component {
               }}
               placeholder="手机号/邮箱"
             >
-              <span className="fz30">账号</span>
+              <span className="fz20">账号</span>
             </InputItem>
             <InputItem
               data-role="login-input"
@@ -67,7 +64,7 @@ class Login extends React.Component {
               type="password"
               maxLength="20"
             >
-              <span className="fz30">密码</span>
+              <span className="fz20">密码</span>
             </InputItem>
           </List>
           <WingBlank size="lg">
@@ -76,7 +73,6 @@ class Login extends React.Component {
               size="large"
               onClick={this.onSubmit}
               className="mt30"
-              style={submitStyle}
             >
               保存
             </Button>
@@ -88,20 +84,20 @@ class Login extends React.Component {
             <span styleName="header__tip">其他登录方式</span>
             <div styleName="header__line" />
           </div>
-        </div>
-        <div styleName="login__application">
-          <div styleName="application">
-            <i className="icon-12" />
-            <br />
-            <span styleName="application__tip">QQ</span>
+          <div styleNamea="login__application">
+            <div styleName="application">
+              <i className="icon-163" />
+              <br />
+              <span styleName="application__tip">QQ</span>
+            </div>
+            <div styleName="application">
+              <i className="icon-162" />
+              <br />
+              <span styleName="application__tip">微信</span>
+            </div>
           </div>
-          <div styleName="application">
-            <i className="icon-12" />
-            <br />
-            <span styleName="application__tip">微信</span>
-          </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

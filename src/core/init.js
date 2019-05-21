@@ -1,12 +1,8 @@
-import "./adaptive";
+// import "./adaptive";
 import Router from "./router";
 import "@/asset/sass";
 
 const App = () => {
-  return (
-    <div>
-      <Router />
-    </div>
-  );
+  return <Router />;
 };
 export default App;

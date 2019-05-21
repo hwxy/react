@@ -1,8 +1,15 @@
 import React from "react";
-import "@/asset/sass/won-service/common/navigation.module.scss";
+import "@/asset/sass/won-service/businesscomp/navigation.module.scss";
 import { NavLink } from "react-router-dom";
+
 class Navigation extends React.Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      render: false
+    };
+  }
+
   render() {
     let pathname = this.props.location.pathname;
     return (
@@ -12,10 +19,11 @@ class Navigation extends React.Component {
             to="/"
             styleName={pathname === "/" ? "nav-icon nav-active" : "nav-icon"}
           >
-            <span className="icon-12 fz30" />
-            <span className="fz20">首页</span>
+            <span className="icon-12 fz25" />
+            <span>首页</span>
           </NavLink>
           <NavLink to="/shopping" styleName="nav-icon">
+            <span className="icon-72 fz25" />
             购物车
           </NavLink>
           <NavLink
@@ -24,6 +32,7 @@ class Navigation extends React.Component {
               pathname === "/login" ? "nav-icon nav-active" : "nav-icon"
             }
           >
+            <span className="icon-17 fz25" />
             登录
           </NavLink>
           <NavLink
@@ -32,6 +41,7 @@ class Navigation extends React.Component {
               pathname === "/icon" ? "nav-icon nav-active" : "nav-icon"
             }
           >
+            <span className="icon-146 fz25" />
             图标
           </NavLink>
         </div>

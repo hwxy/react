@@ -1,5 +1,5 @@
 import "@/asset/sass/views/icon.module.scss";
-import Navigation from "won-common/navigation";
+import Navigation from "won-bcomp/navigation";
 const Icon = props => {
   let list = new Array(161).fill(0);
   list = list.map((v, i) => {

@@ -2,21 +2,26 @@
   width: 100%;
   position: fixed;
   bottom: 0px;
-  height: 80px;
+  height: 60px;
   background: #fff;
   border-top: 1px solid #EEE;
   z-index: 999;
 }
 .nav{
-  display: flex;   
+  display: flex;  
+  height: 100%; 
 }
 .nav-icon{
   flex: 1;
-  height: 100px;
+  height: 100%;
+  
   display: flex;
   flex-direction: column; 
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
+  text-align: center;
+  padding: 8px 0px;
+
   color: $black;
 }
 .nav-active{

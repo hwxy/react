@@ -1,6 +1,19 @@
-.cell{
-  background: red;
+
+.toutiao__container{
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
 }
-.login{
-  background: red;
+
+.toutiao__title{
+  width: 45px;
+  height: 45px;
+  background: pink;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.toutiao-item{
+  background: palegreen;
+  height: 45px;
 }
