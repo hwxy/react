@@ -1,8 +1,6 @@
 import React from "react";
-import styles from "@/asset/sass/views/swiper-demo.module.scss";
-// import commonStyles from "../../asset/sass/common/normalize.scss";
+import "@/asset/sass/views/swiper-demo.module.scss";
 import Carousel from "rmc-nuka-carousel";
-import { getSwiperData } from "../../api/swiperDemoApi.js";
 
 class SwiperDemo extends React.Component {
   state = {
@@ -12,13 +10,7 @@ class SwiperDemo extends React.Component {
     this.getSwiperData();
   }
 
-  getSwiperData = () => {
-    getSwiperData().then(res => {
-      this.setState({
-        swiperList: res.data
-      });
-    });
-  };
+  getSwiperData = () => {};
   render() {
     return (
       <div className="swiper-page">
@@ -32,7 +24,7 @@ class SwiperDemo extends React.Component {
           {this.state.swiperList.map((item, index) => {
             return (
               <div
-                className={styles["swiper-block"]}
+                styleName="swiper-block"
                 style={{ backgroundColor: item }}
                 key={index}
               >

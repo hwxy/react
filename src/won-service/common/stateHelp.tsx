@@ -1,8 +1,9 @@
 import { PureComponent } from "react";
 
 class StateHelp extends PureComponent {
-  constructor() {
-    super();
+  unmount: boolean;
+  constructor(props: any) {
+    super(props);
     this.state = {
       render: false
     };

@@ -2,8 +2,17 @@ import React from "react";
 import "@/asset/sass/won-service/businesscomp/navigation.module.scss";
 import { NavLink } from "react-router-dom";
 
-class Navigation extends React.Component {
-  constructor(props) {
+interface ContainerProps{
+  location?: any,
+  QQBtnShow?: any
+}
+
+interface ContainerState {
+  render?: any
+}
+
+class Navigation extends React.Component<ContainerProps, ContainerState> {
+  constructor(props: any) {
     super(props);
     this.state = {
       render: false

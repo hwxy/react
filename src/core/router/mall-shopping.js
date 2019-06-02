@@ -1,5 +1,7 @@
-import Shopping from "@/views/mall-shopping";
+import Async from "won-common/async-comp.tsx";
 export default {
   path: "/shopping",
-  component: Shopping
+  component: Async(() =>
+    import(/* webpackChunkName: 'Shopping' */ "@/views/mall-shopping/index.tsx")
+  )
 };

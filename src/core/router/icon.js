@@ -1,5 +1,7 @@
-import Icon from "@/views/icon";
+import Async from "won-common/async-comp.tsx";
 export default {
   path: "/icon",
-  component: Icon
+  component: Async(() =>
+    import(/* webpackChunkName: 'Icon' */ "@/views/icon/index.tsx")
+  )
 };

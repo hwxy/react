@@ -1,5 +1,7 @@
-import SwiperDemo from "@/views/swiper-demo/index";
+import Async from "won-common/async-comp.tsx";
 export default {
   path: "/swiperdemo",
-  component: SwiperDemo
+  component: Async(() =>
+    import(/* webpackChunkName: 'SwiperDemo' */ "@/views/swiper-demo/index.tsx")
+  )
 };

@@ -86,6 +86,7 @@ module.exports = function(webpackEnv) {
           // https://github.com/facebook/create-react-app/issues/2677
           ident: "postcss",
           plugins: () => [
+            require("postcss-write-svg"),
             require("postcss-flexbugs-fixes"),
             require("postcss-preset-env")({
               autoprefixer: {
@@ -281,7 +282,8 @@ module.exports = function(webpackEnv) {
         "@": path.join(__dirname, "..", "src"),
         "won-service": path.join(__dirname, "..", "src/won-service"),
         "won-common": path.join(__dirname, "..", "src/won-service/common"),
-        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp")
+        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp"),
+        "won-util": path.join(__dirname, "..", "src/won-service/util")
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

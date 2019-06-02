@@ -1,5 +1,7 @@
-import Homepage from "@/views/mall-homepage";
+import Async from "won-common/async-comp.tsx";
 export default {
   path: "/",
-  component: Homepage
+  component: Async(() =>
+    import(/* webpackChunkName: 'homePage' */ "@/views/mall-homepage/index.tsx")
+  )
 };

@@ -9,16 +9,17 @@ import { WingBlank } from "antd-mobile";
 
 // buscomp
 import Navigation from "won-bcomp/navigation";
-import Search from "won-bcomp/mall-homepage/search";
+import Search from "won-bcomp/mall-homepage/search/index";
 import Carousel from "won-common/carousel";
 import Grid from "won-common/grid";
-import ListView from "won-common/list-view";
 
 // import Search from "won-bcomp/search";
 
 class HomePage extends StateHelp {
-  constructor() {
-    super();
+  GridData: any = null
+  carouselData: any = null
+  constructor(props: any) {
+    super(props);
 
     // 栅格数据
     this.GridData = Array.from(new Array(8)).map((_val, i) => ({
@@ -79,7 +80,6 @@ class HomePage extends StateHelp {
             </Carousel>
           </div>
         </WingBlank>
-        <ListView />
         <Navigation {...this.props} />
       </div>
     );

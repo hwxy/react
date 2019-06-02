@@ -2,7 +2,7 @@ import React from "react";
 import "@/asset/sass/won-service/businesscomp/search.module.scss";
 
 class Navigation extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       render: false

@@ -1,16 +1,8 @@
 // scss
 import "@/asset/sass/won-service/businesscomp/mall-homepage/search/index.module.scss";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const Search = () => {
-  const [isScroll, setIsScroll] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      // document.scrollingElement.scrollTop;
-    });
-    return () => {};
-  });
   return (
     <div styleName="search-container">
       <div styleName="search__classify">

@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Abc from "./abc";
+
 class Shopping extends PureComponent {
   state = {
     value: 1
@@ -20,7 +20,6 @@ class Shopping extends PureComponent {
     let { value } = this.state;
     return (
       <div>
-        <Abc value={value} />
       </div>
     );
   }
