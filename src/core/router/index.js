@@ -1,4 +1,4 @@
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 let configRouters = [];
 const routers = require.context("./", true, /\.js$/);
 routers.keys().forEach(key => {
@@ -10,9 +10,9 @@ const Router = () => {
     return <Route key={i} exact path={v.path} component={v.component} />;
   });
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Switch>{route}</Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 export default Router;

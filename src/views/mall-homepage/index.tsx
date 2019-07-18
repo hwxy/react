@@ -1,6 +1,7 @@
 // comp
 import StateHelp from "won-common/stateHelp";
 
+
 // scss
 import "@/asset/sass/views/mall-homepage.module.scss";
 
@@ -13,8 +14,9 @@ import Search from "won-bcomp/mall-homepage/search/index";
 import Carousel from "won-common/carousel";
 import Grid from "won-common/grid";
 
-// import Search from "won-bcomp/search";
-
+// redux
+import { connect } from 'react-redux';
+// import action from '../../core/redux/action/mall-homepage'
 class HomePage extends StateHelp {
   GridData: any = null
   carouselData: any = null
@@ -85,5 +87,17 @@ class HomePage extends StateHelp {
     );
   }
 }
+// const mapStateToProps = () => {
+//   return {
+//     a:1
+//   };
+// },
+// mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     init: () => {
+//       return dispatch(action());
+//     }
+//   };
+// };
 
 export default HomePage;
