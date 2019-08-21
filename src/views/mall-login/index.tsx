@@ -9,7 +9,8 @@ import QQLogin from "won-util/qq";
 
 interface ContainerProps{
   form?: any,
-  QQBtnShow?: any
+  QQBtnShow?: any,
+  onLogin: () => {}
 }
 
 interface ContainerState {
@@ -75,10 +76,9 @@ class Login extends React.Component<ContainerProps, ContainerState> {
                 styleName="application"
                 onClick={e => {
                   e && e.stopPropagation();
-                  // document.querySelector("#qqLoginBtn a").click();
+                  this.props.onLogin();
                 }}
               >
-                <span id="qqLoginBtn" styleName="qqLoginBtn" />
                 <i className="icon-163" />
                 <WhiteSpace size="xs" />
                 <span styleName="application__tip">QQ</span>
@@ -96,4 +96,4 @@ class Login extends React.Component<ContainerProps, ContainerState> {
   }
 }
 // Login = createForm()(QQLogin(Login));
-export default Login;
+export default QQLogin(Login);

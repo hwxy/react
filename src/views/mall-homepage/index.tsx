@@ -16,7 +16,8 @@ import Grid from "won-common/grid";
 
 // redux
 import { connect } from 'react-redux';
-// import action from '../../core/redux/action/mall-homepage'
+import action from '../../core/redux/action/mall-homepage'
+
 class HomePage extends StateHelp {
   GridData: any = null
   carouselData: any = null
@@ -87,17 +88,17 @@ class HomePage extends StateHelp {
     );
   }
 }
-// const mapStateToProps = () => {
-//   return {
-//     a:1
-//   };
-// },
-// mapDispatchToProps = (dispatch: any) => {
-//   return {
-//     init: () => {
-//       return dispatch(action());
-//     }
-//   };
-// };
+const mapStateToProps = () => {
+  return {
+    a:1
+  };
+},
+mapDispatchToProps = (dispatch: any) => {
+  return {
+    init: () => {
+      return dispatch(action());
+    }
+  };
+};
 
 export default HomePage;

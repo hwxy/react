@@ -1,7 +1,7 @@
 
-// export default () => (dispatch: any) => {
-//   return dispatch({
-//     type: 'filter', 
-//     payload: 1
-//   });
-// }
+export default () => (dispatch: any) => {
+  return dispatch({
+    type: 'filter', 
+    payload: 1
+  });
+}

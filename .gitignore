@@ -21,7 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-ant-design-mobile
-m-tabs
-react-sticky

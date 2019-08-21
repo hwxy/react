@@ -13,12 +13,6 @@ let staticServerWithCache = staticMidd(assetsPath, {
 
 let staticServerNoCache = staticMidd(assetsPath);
 
-// app.use(
-//   historyApiFallback({
-//     index: "/"
-//   })
-// );
-
 router.get("/(:spa)?", async ctx => {
   await ctx.render("index");
 });

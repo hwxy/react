@@ -1,12 +1,25 @@
 import StateHelp from "../common/stateHelp";
-// import loadJS from "./script";
+import loadJS from "./script";
 export default (Comp: any) => {
   class QQLogin extends StateHelp {
+    QQBtnShow: boolean = true
     constructor(props: any) {
       super(props);
-      // this.QQBtnShow = true;
     }
-    async componentWillMount() {
+
+    qqLogin = () => {
+      let win: any = window  
+      win['qc'].Login.showPopup({
+        appId:"1106805458",
+        redirectURI:"http://localhost:3000"
+      })
+      // QC.Login.getMe((a)=>{console.log(a)})
+    }
+    componentWillMount(){
+      let win: any = window  
+      // win['qc'].Login.getMe((a: string)=>{ console.log(a) } );
+    }
+    componentDidMount() {
       // loadJS(
       //   "http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js",
       //   {
@@ -14,20 +27,20 @@ export default (Comp: any) => {
       //     charset: "utf-8"
       //   },
       //   () => {
-      //     this.QQBtnShow = true;
-      // eslint-disable-next-line no-undef
-      // QC.Login({
-      //   btnId: "qqLoginBtn"
-      // });
+      // setTimeout(()=>{
+        // let win: any = window
+        // win["qc"].Login({
+        //   btnId: "qqLoginBtn"
+        // }, (...arg: any[]) => {
+        //   console.log(arg, 11);
+        // });
       // this.doRender();
-      //   }
-      // );
     }
+      // );
 
-    componentDidMount() {}
 
     render() {
-      return <Comp {...this.props} />;
+      return <Comp onLogin={this.qqLogin} {...this.props} QQBtnShow={this.QQBtnShow} />;
     }
   }
   return QQLogin;
