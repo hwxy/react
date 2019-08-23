@@ -11,8 +11,8 @@ reducerFile.keys().forEach((item: string): void => {
 
 let middlware: any[] = [thunk];
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default createStore(
-  combineReducers(reducers),
+  combineReducers(reducers),    
   applyMiddleware(...middlware)
 )

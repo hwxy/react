@@ -74,7 +74,6 @@ class HomePage extends StateHelp {
         <Search />
         <Carousel autoplay={true} infinite>
           {isEmptyCarouselData ? <div className={Style['carousel__empty']}>
-
           </div> : this.carouselData}
         </Carousel>
         <Grid data={this.GridData} />
