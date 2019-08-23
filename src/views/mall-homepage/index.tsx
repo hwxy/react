@@ -3,7 +3,7 @@ import StateHelp from "won-common/stateHelp";
 
 
 // scss
-// import Style from "@/asset/sass/views/mall-homepage.module.scss";
+import Style from "@/asset/sass/views/mall-homepage.module.scss";
 
 
 // uicomp
@@ -69,8 +69,8 @@ class HomePage extends StateHelp {
         </Carousel>
         <Grid data={this.GridData} />
         <WingBlank size="md">
-          <div className="toutiao__container">
-            <div className="toutiao__title">呼呼头条</div>
+          <div className={Style['toutiao__container']}>
+            <div className={Style["toutiao__title"]}>呼呼头条</div>
             <Carousel
               vertical
               dots={false}
@@ -79,9 +79,9 @@ class HomePage extends StateHelp {
               autoplay={true}
               infinite
             >
-              <div className="toutiao-item">carousel 1</div>
-              <div className="toutiao-item">carousel 2</div>
-              <div className="toutiao-item">carousel 3</div>
+              <div className={Style["toutiaoItem"]}>carousel 1</div>
+              <div className={Style["toutiaoItem"]}>carousel 2</div>
+              <div className={Style["toutiaoItem"]}>carousel 3</div>
             </Carousel>
           </div>
         </WingBlank>
