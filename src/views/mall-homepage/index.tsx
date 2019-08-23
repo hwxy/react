@@ -22,6 +22,9 @@ import action from '../../core/redux/action/mall-homepage'
 // store
 import Store from './store';
 
+// lodash
+import _ from 'lodash';
+
 interface IGridData{
   icon: string,
   text: string  
@@ -60,12 +63,19 @@ class HomePage extends StateHelp {
     await this.doRender();
   }
 
+  async componentDidMount(){
+
+  }
+
   render() {
+    let isEmptyCarouselData: boolean = _.isEmpty(this.carouselData);
     return (
       <div>
         <Search />
-        <Carousel className={'aa'} autoplay={true} infinite>
-          {this.carouselData}
+        <Carousel autoplay={true} infinite>
+          {isEmptyCarouselData ? <div className={Style['carousel__empty']}>
+
+          </div> : this.carouselData}
         </Carousel>
         <Grid data={this.GridData} />
         <WingBlank size="md">

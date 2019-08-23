@@ -3,3 +3,5 @@ export const toutiaoContainer: string;
 export const toutiao__title: string;
 export const toutiaoTitle: string;
 export const toutiaoItem: string;
+export const carousel__empty: string;
+export const carouselEmpty: string;

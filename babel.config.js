@@ -2,6 +2,7 @@ const path = require("path");
 module.exports = {
   presets: ["react-app"],
   plugins: [
+    "lodash",
     [
       "module-resolver",
       {
