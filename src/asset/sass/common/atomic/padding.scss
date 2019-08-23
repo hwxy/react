@@ -1,14 +1,16 @@
-@for $i from 0 to 10{
-  .pt#{$i * 5}{
-    padding-top: $i * 5px !important;
-  } 
-  .pb#{$i * 5}{
-    padding-bottom: $i * 5px !important;
-  }
-  .pl#{$i * 5}{
-    padding-left: $i * 5px !important;
-  }
-  .pr#{$i * 5}{
-    padding-right: $i * 5px !important;
+:global{
+  @for $i from 0 to 10{
+    .pt#{$i * 5}{
+      padding-top: $i * 5px !important;
+    } 
+    .pb#{$i * 5}{
+      padding-bottom: $i * 5px !important;
+    }
+    .pl#{$i * 5}{
+      padding-left: $i * 5px !important;
+    }
+    .pr#{$i * 5}{
+      padding-right: $i * 5px !important;
+    }
   }
 }

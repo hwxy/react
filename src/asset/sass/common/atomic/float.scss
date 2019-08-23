@@ -1,6 +1,8 @@
-.f-r{
-  float:right;
-}
-.f-l{
-  float: left;
+:global{
+  .f-r{
+    float:right;
+  }
+  .f-l{
+    float: left;
+  }
 }

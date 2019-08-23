@@ -7,6 +7,7 @@
   url('/font/iconfont.svg?t=1548068252986#iconfont') format('svg'); /* iOS 4.1- */
 }
 
+:global{
 [class^="icon-"], [class*=" icon-"] {
   font-family:"icon" !important;
   font-style:normal;
@@ -669,3 +670,4 @@
   content: "\e6a2";
 }
 
+}

@@ -1,11 +1,11 @@
 import React from "react";
 
 import { InputItem, Button, WingBlank, WhiteSpace } from "antd-mobile";
-import "@/asset/sass/views/mall-login.module.scss";
+import Style  from  "@/asset/sass/views/mall-login.module.scss";
 
 //支持react 和react-native 的表单校验 和element 一样
 // import { createForm } from "rc-form";
-import QQLogin from "won-util/qq";
+import QQLogin from "won-util/qq";       
 
 interface ContainerProps{
   form?: any,
@@ -28,9 +28,9 @@ class Login extends React.Component<ContainerProps, ContainerState> {
       QQBtnShow
     } = this.props;
     return (
-      <div styleName="container">
+      <div className={Style.container}>
         <form>
-          <div styleName="title">
+          <div className={Style.title}>
             <i
               className="icon-161 f-l"
               onClick={() => {
@@ -39,7 +39,7 @@ class Login extends React.Component<ContainerProps, ContainerState> {
             />
             <span className="pr40">登录</span>
           </div>
-          <div styleName="login-content">
+          <div className={Style['loginContent']}>
             <InputItem
               clear
               placeholder="手机号/邮箱"
@@ -64,16 +64,16 @@ class Login extends React.Component<ContainerProps, ContainerState> {
             </WingBlank>
           </div>
         </form>
-        <div styleName="other-login">
-          <div styleName="login-header">
-            <div styleName="header__line" />
-            <span styleName="header__tip">其他登录方式</span>
-            <div styleName="header__line" />
+        <div className={Style['otherLogin']}>
+          <div className={Style['loginHeader']}>
+            <div className={Style["header__line"]} />
+            <span className={Style["header__tip"]}>其他登录方式</span>
+            <div className={Style["header__line"]} />
           </div>
-          <div styleName="login__application">
+          <div className={Style["login__application"]}>
             {QQBtnShow && (
               <div
-                styleName="application"
+                className={Style["application"]}
                 onClick={e => {
                   e && e.stopPropagation();
                   this.props.onLogin();
@@ -81,13 +81,13 @@ class Login extends React.Component<ContainerProps, ContainerState> {
               >
                 <i className="icon-163" />
                 <WhiteSpace size="xs" />
-                <span styleName="application__tip">QQ</span>
+                <span className={Style["application__tip"]}>QQ</span>
               </div>
             )}
-            <div styleName="application">
+            <div className={Style["application"]}>
               <i className="icon-162" />
               <WhiteSpace size="xs" />
-              <span styleName="application__tip">微信</span>
+              <span className={Style["application__tip"]}>微信</span>
             </div>
           </div>
         </div>

@@ -11,9 +11,9 @@ export default (Comp: any) => {
       let win: any = window  
       win['qc'].Login.showPopup({
         appId:"1106805458",
-        redirectURI:"http://localhost:3000"
+        redirectURI:"http://hWu.try.com/"
       })
-      // QC.Login.getMe((a)=>{console.log(a)})
+      // QC.Login.getMe((a)=>{console.log(a)})    
     }
     componentWillMount(){
       let win: any = window  

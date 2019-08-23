@@ -1,17 +1,19 @@
-@for $i from 0 to 10{
-  .mt#{$i * 5}{
-    margin-top: $i * 5px !important;
-  } 
-  .mb#{$i * 5}{
-    margin-bottom: $i * 5px !important;
+:global{
+  @for $i from 0 to 10{
+    .mt#{$i * 5}{
+      margin-top: $i * 5px !important;
+    } 
+    .mb#{$i * 5}{
+      margin-bottom: $i * 5px !important;
+    }
+    .ml#{$i * 5}{
+      margin-left: $i * 5px !important;
+    }
+    .mr#{$i * 5}{
+      margin-right: $i * 5px !important;
+    }
   }
-  .ml#{$i * 5}{
-    margin-left: $i * 5px !important;
+  .mt140{
+    margin-top: 140px;
   }
-  .mr#{$i * 5}{
-    margin-right: $i * 5px !important;
-  }
-}
-.mt140{
-  margin-top: 140px;
 }

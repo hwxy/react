@@ -3,7 +3,8 @@ import StateHelp from "won-common/stateHelp";
 
 
 // scss
-import "@/asset/sass/views/mall-homepage.module.scss";
+// import Style from "@/asset/sass/views/mall-homepage.module.scss";
+
 
 // uicomp
 import { WingBlank } from "antd-mobile";
@@ -18,57 +19,58 @@ import Grid from "won-common/grid";
 import { connect } from 'react-redux';
 import action from '../../core/redux/action/mall-homepage'
 
+// store
+import Store from './store';
+
+interface IGridData{
+  icon: string,
+  text: string  
+}
 class HomePage extends StateHelp {
-  GridData: any = null
-  carouselData: any = null
+
+  GridData: IGridData[] = []
+
+  carouselData: JSX.Element[] = []
+
   constructor(props: any) {
     super(props);
-
-    // 栅格数据
-    this.GridData = Array.from(new Array(8)).map((_val, i) => ({
-      icon:
-        "https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png",
-      text: `name${i}`
-    }));
-
-    // 轮播图数据
-    this.carouselData = [
-      "AiyWuByWklrrUDlFignR",
-      "TekJlZRVCjLFexlOCuWn",
-      "IJOtIlfsYdTyaDTRVrLI"
-    ].map(val => {
-      return (
-        <a
-          key={val}
-          href="http://www.alipay.com"
-          style={{
-            display: "inline-block",
-            width: "100%",
-            height: 176
-          }}
-        >
-          <img
-            style={{
-              display: "block"
-            }}
-            alt=""
-            src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-          />
-        </a>
-      );
-    });
   }
+     
+  async componentWillMount(){
+    await Store.init();
+    this.GridData = Store.getQuick();
+    this.carouselData = Store.getBanner().map((val, index)=>(
+      <a
+      key={index + 'a'}
+      style={{
+        display: "inline-block",
+        width: "100%",
+      }}
+    >
+      <img
+        style={{
+          display: "block",
+          width: '100%'
+        }}
+        alt=""
+        src={val.icon}
+      />
+    </a>
+    ));
+    await this.doRender();
+  }
+
   render() {
     return (
       <div>
         <Search />
-        <Carousel autoplay={true} infinite>
+        <Carousel className={'aa'} autoplay={true} infinite>
           {this.carouselData}
         </Carousel>
         <Grid data={this.GridData} />
         <WingBlank size="md">
-          <div styleName="toutiao__container">
-            <div styleName="toutiao__title">呼呼头条</div>
+          <div className="toutiao__container">
+            <div className="toutiao__title">呼呼头条</div>
             <Carousel
               vertical
               dots={false}
@@ -77,9 +79,9 @@ class HomePage extends StateHelp {
               autoplay={true}
               infinite
             >
-              <div styleName="toutiao-item">carousel 1</div>
-              <div styleName="toutiao-item">carousel 2</div>
-              <div styleName="toutiao-item">carousel 3</div>
+              <div className="toutiao-item">carousel 1</div>
+              <div className="toutiao-item">carousel 2</div>
+              <div className="toutiao-item">carousel 3</div>
             </Carousel>
           </div>
         </WingBlank>

@@ -1,5 +1,5 @@
 import React from "react";
-import "@/asset/sass/won-service/businesscomp/navigation.module.scss";
+import Style from "@/asset/sass/won-service/businesscomp/navigation.module.scss";
 import { NavLink } from "react-router-dom";
 
 interface ContainerProps{
@@ -22,23 +22,23 @@ class Navigation extends React.Component<ContainerProps, ContainerState> {
   render() {
     let pathname = this.props.location.pathname;
     return (
-      <div styleName="container">
-        <div styleName="nav">
+      <div className={Style['container']}>
+        <div className={Style['nav']}>
           <NavLink
             to="/"
-            styleName={pathname === "/" ? "nav-icon nav-active" : "nav-icon"}
+            className={pathname === "/" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`}
           >
             <span className="icon-12 fz25" />
             <span>首页</span>
           </NavLink>
-          <NavLink to="/shopping" styleName="nav-icon">
+          <NavLink to="/shopping" className={Style["navIcon"]}>
             <span className="icon-72 fz25" />
             购物车
           </NavLink>
           <NavLink
             to="/login"
-            styleName={
-              pathname === "/login" ? "nav-icon nav-active" : "nav-icon"
+            className={
+              pathname === "/login" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`
             }
           >
             <span className="icon-17 fz25" />
@@ -46,8 +46,8 @@ class Navigation extends React.Component<ContainerProps, ContainerState> {
           </NavLink>
           <NavLink
             to="/icon"
-            styleName={
-              pathname === "/icon" ? "nav-icon nav-active" : "nav-icon"
+            className={
+              pathname === "/icon" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`
             }
           >
             <span className="icon-146 fz25" />

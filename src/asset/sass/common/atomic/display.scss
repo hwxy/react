@@ -1,6 +1,9 @@
-.iblock{
-  display: inline-block !important;
+:global{
+  .iblock{
+    display: inline-block !important;
+  }
+  .block{
+    display: block !important;
+  }
 }
-.block{
-  display: block !important;
-}
+

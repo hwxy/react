@@ -1,9 +1,12 @@
 import Router from "./router";
-import "@/asset/sass/index.scss";
 // redux
 import { Provider } from "react-redux";
 // store
 import Store from "./redux/index.tsx";
+
+import "@/asset/sass/index.scss";
+import "@/asset/sass/tool/index.scss";
+
 const App = () => {
   return (
     <Provider store={Store}>

@@ -1,6 +1,5 @@
 import React from "react";
-import "@/asset/sass/won-service/businesscomp/search.module.scss";
-
+             
 class Navigation extends React.Component {
   constructor(props: any) {
     super(props);
@@ -22,7 +21,7 @@ class Navigation extends React.Component {
     });
   };
   render() {
-    return <div styleName="container" />;
+    return <div />;
   }
 }
 export default Navigation;

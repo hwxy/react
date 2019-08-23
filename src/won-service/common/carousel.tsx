@@ -1,5 +1,5 @@
 import { Carousel } from "antd-mobile";
-import StateHelp from "./stateHelp";
+// import StateHelp from "./stateHelp";
 import React,{ Component } from 'react';
 interface ContainerProps{
   vertical?: any
@@ -7,7 +7,8 @@ interface ContainerProps{
   dragging?: any
   swiping?: any
   autoplay?: any
-  infinite?: any
+  infinite?: any,
+  className?: string
 }
 
 interface ContainerState {}
