@@ -2,7 +2,8 @@
   "name": "router",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "homepage": "//hwcdn.hwaxy.cn/",
+  "devDependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
     "@types/hoist-non-react-statics": "^3.3.1",
@@ -15,6 +16,7 @@
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-sticky": "^6.0.3",
+    "@types/redux-actions": "^2.6.1",
     "@types/webpack": "^4.4.32",
     "@types/webpack-env": "^1.14.0",
     "adaptive.js": "0.0.2",
@@ -96,10 +98,12 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build:prod": "node scripts/build.js",
+    "build:dev": "node scripts/build.js",
     "test": "node scripts/test.js",
     "start_prod": "node ./server/index",
-    "publish:prod": "sh shell/build.sh prod $1"
+    "start_dev": "nodemon ./server/index",
+    "publish:prod": "npm run build:prod && sh shell/build.sh prod $1"
   },
   "browserslist": [
     ">0.2%",
@@ -107,7 +111,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
+  "dependencies": {
     "koa": "^2.7.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
