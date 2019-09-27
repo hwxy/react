@@ -8,6 +8,9 @@ import { addnum, delnum } from "@/core/redux/action/mall-shop";
 import Style from "@/asset/sass/views/mall-shopping.module.scss";
 
 
+
+
+
 // import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
 import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualized';
 // import 'react-virtualized/styles.css';
