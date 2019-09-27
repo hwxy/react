@@ -1,7 +1,7 @@
 import React from "react";
 
 import { InputItem, Button, WingBlank, WhiteSpace } from "antd-mobile";
-import Style  from  "@/asset/sass/views/mall-login.module.scss";
+import Style from "@/asset/sass/views/mall-login.module.scss";
 
 //支持react 和react-native 的表单校验 和element 一样
 // import { createForm } from "rc-form";

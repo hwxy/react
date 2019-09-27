@@ -8,7 +8,14 @@ const mallShop = handleActions(
       state,
       action
     ) => {
-      console.log(action,22);
+      console.log(action, 'ADD');
+      return { ...state, counter: state.counter + (action as any).payload.counter };
+    },
+    DEl: (
+      state,
+      action
+    ) => {
+      console.log(action, 'DEl');
       return { ...state, counter: state.counter + (action as any).payload.counter };
     }
   },

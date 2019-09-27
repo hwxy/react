@@ -15,10 +15,6 @@ export default (Comp: any) => {
       })
       // QC.Login.getMe((a)=>{console.log(a)})    
     }
-    componentWillMount(){
-      let win: any = window  
-      // win['qc'].Login.getMe((a: string)=>{ console.log(a) } );
-    }
     componentDidMount() {
       // loadJS(
       //   "http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js",

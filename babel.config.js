@@ -23,6 +23,7 @@ module.exports = {
     //   }
     // ],
     // `style: true` 会加载 less 文件
-    ["import", { libraryName: "antd-mobile", style: "css" }]
+    ["import", { libraryName: "antd-mobile", style: "css" }],
+    "webpack-async-module-name"
   ]
 };

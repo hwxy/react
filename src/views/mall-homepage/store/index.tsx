@@ -20,7 +20,7 @@ class HomePageStore{
   data: any
 
   init = async (): Promise<void>=> {
-    this.data = await apiGet('/_copy/homepage');    
+    this.data = await apiGet('/_copy/homepage');
   };
 
   getBanner = (): IBanner[] => {

@@ -8,5 +8,6 @@
     },
     "globals": {   //额外的全局变量
         "QC": true,
+        "importName": true
     },
 }

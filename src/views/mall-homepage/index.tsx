@@ -1,7 +1,6 @@
 // comp
 import StateHelp from "won-common/stateHelp";
 
-
 // scss
 import Style from "@/asset/sass/views/mall-homepage.module.scss";
 
@@ -11,9 +10,10 @@ import { WingBlank } from "antd-mobile";
 
 // buscomp
 import Navigation from "won-bcomp/navigation";
-import Search from "won-bcomp/mall-homepage/search/index";
+import Search from "won-bcomp/mall-homepage/search";
 import Carousel from "won-common/carousel";
 import Grid from "won-common/grid";
+import loadingHoc from "../../won-service/common/loading";
 
 // redux
 import { connect } from 'react-redux';
@@ -30,53 +30,44 @@ interface IGridData{
   text: string  
 }
 class HomePage extends StateHelp {
-
-  GridData: IGridData[] = []
-
-  carouselData: JSX.Element[] = []
-
   constructor(props: any) {
     super(props);
   }
-     
-  async componentWillMount(){
-    await Store.init();
-    this.GridData = Store.getQuick();
-    this.carouselData = Store.getBanner().map((val, index)=>(
-      <a
-      key={index + 'a'}
-      style={{
-        display: "inline-block",
-        width: "100%",
-      }}
-    >
-      <img
+    
+  renderCarousel(){
+    let list = Store.getBanner().map((val, index)=>(
+        <a
+        key={index}
         style={{
+          width: "100%",
           display: "block",
-          width: '100%'
         }}
-        alt=""
-        src={val.icon}
-      />
-    </a>
+      >
+        <img
+          style={{
+            display: "block",
+            width: '100%'
+          }}
+          alt=""
+          src={val.icon}
+        />
+      </a>
     ));
-    await this.doRender();
-  }
-
-  async componentDidMount(){
-
+    
+    return (
+      <Carousel className={Style['carousel']} autoplay={false} infinite={false}>
+        {list}
+     </Carousel>
+    );
   }
 
   render() {
-    let isEmptyCarouselData: boolean = _.isEmpty(this.carouselData);
+    let GridData = Store.getQuick();
     return (
       <div>
         <Search />
-        <Carousel autoplay={true} infinite>
-          {isEmptyCarouselData ? <div className={Style['carousel__empty']}>
-          </div> : this.carouselData}
-        </Carousel>
-        <Grid data={this.GridData} />
+        {this.renderCarousel()}
+        <Grid data={GridData} />
         <WingBlank size="md">
           <div className={Style['toutiao__container']}>
             <div className={Style["toutiao__title"]}>呼呼头条</div>
@@ -99,17 +90,19 @@ class HomePage extends StateHelp {
     );
   }
 }
-const mapStateToProps = () => {
-  return {
-    a:1
-  };
-},
-mapDispatchToProps = (dispatch: any) => {
-  return {
-    init: () => {
-      return dispatch(action());
-    }
-  };
-};
+// const mapStateToProps = () => {
+//   return {
+//     a:1
+//   };
+// },
+// mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     init: () => { 
+//       return dispatch(action());
+//     }
+//   };
+// };
 
-export default HomePage;
+export default loadingHoc(async ()=>{
+  await Store.init();
+}, HomePage);

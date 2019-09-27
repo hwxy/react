@@ -5,3 +5,4 @@ export const toutiaoTitle: string;
 export const toutiaoItem: string;
 export const carousel__empty: string;
 export const carouselEmpty: string;
+export const carousel: string;
