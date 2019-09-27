@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { addnum, delnum } from "@/core/redux/action/mall-shop";
 
 // scss
+
+
 import Style from "@/asset/sass/views/mall-shopping.module.scss";
 // import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
 import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualized';
