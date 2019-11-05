@@ -18,7 +18,7 @@ const mallShop = handleActions(
       console.log(action, 'DEl');
       return { ...state, counter: state.counter + (action as any).payload.counter };
     }
-  },
+  }, 
   defaultState
 );
 

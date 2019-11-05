@@ -1,0 +1,16 @@
+{
+  "main": {
+    "files": {
+      "js": [
+        "/static/js/bundle.js",
+        "/static/js/1.chunk.js",
+        "/static/js/main.chunk.js"
+      ],
+      "map": [
+        "/static/js/bundle.js.map",
+        "/static/js/1.chunk.js.map",
+        "/static/js/main.chunk.js.map"
+      ]
+    }
+  }
+}

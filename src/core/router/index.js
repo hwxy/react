@@ -18,8 +18,10 @@ const Router = () => {
       />
     );
   });
+  let regUrl = /.*\/spa/.exec(window.location.pathname) || [];
+  let baseUrl = regUrl[0] || "/";
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={baseUrl}>
       <Switch>
         <Suspense fallback={<div></div>}>{route}</Suspense>
       </Switch>

@@ -1,69 +1,41 @@
-import React, { Component, RefObject, useState } from 'react';
+// import React, { Component, RefObject, useState } from 'react';
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import { addnum, delnum } from "@/core/redux/action/mall-shop";
+// import { addnum, delnum } from "@/core/redux/action/mall-shop";
 
-// scss
-import Style from "@/asset/sass/views/mall-shopping.module.scss";
-// import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer"
-import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualized';
+// // scss
+// import Style from "@/asset/sass/views/mall-shopping.module.scss";
+
+// import { apiGet } from "@/core/network/index.tsx";
+  
 // import 'react-virtualized/styles.css';
-// interface P{
-//   add: any
-// }
-
-// class Shop extends Component<P>{
-
-//     handleClick = () => {
-//       let { add } =  this.props;
-//       add();
-//     }
-
-//     render(){
-//       return (
-//         <div onClick={this.handleClick}>btn</div>
-//       )
-//     }
-// }
-
-// const MapStateToProps = () => ({})
-
-// const MapDispatchToProps = (dispatch: Function) => {
-//   return {
-//     add(){
-//       dispatch(addnum(1));
-//     }
-//   }
-// }
-
-// export default connect(MapStateToProps, MapDispatchToProps)(Shop);
 
 // class Child1 extends React.Component{
    
 //   state = {}
   
-//   // componentWillMount(){
-//   //   console.log('willMount', 2);
-//   // }
+//   componentWillMount(){
+//     console.log('willMount', 2);
+//   }
 
 //   componentDidMount(){
 //     console.log('didMount', 2);
 //   }
 
-//   static getDerivedStateFromProps(){
-//     console.log('DerivedState', 2);
-//     return null;
-//   }
-
-//   getSnapshotBeforeUpdate(){
-//     console.log('Snapshot', 2);
-//     return null;
-//   }
-
-//   // componentWillReceiveProps(){
-//   //   console.log('receiveProps', 2);
+//   // static getDerivedStateFromProps(){
+//   //   console.log('DerivedState', 2);
+//   //   return null;
 //   // }
+
+//   // getSnapshotBeforeUpdate(){
+//   //   console.log('Snapshot', 2);
+//   //   return null;
+//   // }
+
+//   componentWillReceiveProps(){
+//     console.log('receiveProps', 2);
+//   }
 
 //   componentDidUpdate(){
 //     console.log('didupdate', 2);
@@ -78,26 +50,26 @@ import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualiz
 // class Child2 extends React.Component{
 //   state = {}
 
-//   // componentWillMount(){
-//   //   console.log('willMount', 3);
-//   // }
+//   componentWillMount(){
+//     console.log('willMount', 3);
+//   }
 
 //   componentDidMount(){
 //     console.log('didMount', 3);
 //   }
 
-//   static getDerivedStateFromProps(){
-//     console.log('DerivedState', 3);
-//     return null;
-//   }
-//   getSnapshotBeforeUpdate(){
-//     console.log('Snapshot', 3);
-//     return null;
-//   } 
-
-//   // componentWillReceiveProps(){
-//   //   console.log('receiveProps', 3);
+//   // static getDerivedStateFromProps(){
+//   //   console.log('DerivedState', 3);
+//   //   return null;
 //   // }
+//   // getSnapshotBeforeUpdate(){
+//   //   console.log('Snapshot', 3);
+//   //   return null;
+//   // }   
+
+//   componentWillReceiveProps(){
+//     console.log('receiveProps', 3);
+//   }
 
 //   componentDidUpdate(){
 //     console.log('didupdate', 3);
@@ -126,25 +98,28 @@ import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualiz
 // class Parent extends React.Component<P, S>{
 
 //   state = {}
+
 //   ele: RefObject<any>
+
 //   constructor(props: any){
 //     super(props);
 //     this.ele = React.createRef();
 //   }
 
-//   static getDerivedStateFromProps(){
-//     console.log('DerivedState', 1);
-//     return null;
-//   }
+//   // static getDerivedStateFromProps(){
+//   //   console.log('DerivedState', 1);
+//   //   return null;
+//   // }
   
-//   getSnapshotBeforeUpdate(){
-//     console.log('Snapshot', 1);
-//     return null;
+//   // getSnapshotBeforeUpdate(){
+//   //   console.log('Snapshot', 1);
+//   //   return null;
+//   // }
+
+//   componentWillMount(){
+//     console.log('willMount', 1);
 //   }
 
-//   // componentWillMount(){
-//   //   console.log('willMount', 1);
-//   // }
 //   componentDidUpdate(){
 //     console.log('didupdate', 1);
 //   }
@@ -154,16 +129,25 @@ import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualiz
 
 //   }
 
+//   componentWillReceiveProps(){
+//     console.log('receiveProps', 1);
+//   }
+
 //   render(){
 //     let { add, del } = this.props;
 //     return (
 //       <div>
 //         <div>
-//           {/* <Child1></Child1>
+//           <Child1></Child1>
 //           <Child2></Child2>
-//           <Child3></Child3> */}
-//           <button onClick={()=>{add()}}>add点击</button>
-//           <button onClick={()=>{del()}}>del点击</button>
+//           <Child3></Child3>
+//           <button onClick={() => {
+//             this.setState({
+//               a: 1
+//             })
+//           }}>点击</button>
+//           {/* <button onClick={()=>{add()}}>add点击</button>
+//           <button onClick={()=>{del()}}>del点击</button> */}
 //         </div>
 //       </div>
 //     )
@@ -189,288 +173,142 @@ import { List, WindowScroller, AutoSizer, InfiniteLoader } from 'react-virtualiz
 // }
 // export default connect(MapStateToProps, MapDispatchToProps)(Parent);
 
-const list = [
-  'Brian Vaughn1',
-  'Brian Vaughn2',
-  'Brian Vaughn3',
-  'Brian Vaughn4',
-  'Brian Vaughn5',
-  'Brian Vaughn6',
-  'Brian Vaughn7',
-  'Brian Vaughn8',
-  'Brian Vaughn9',
-  'Brian Vaughn10',
-  'Brian Vaughn11',
-  'Brian Vaughn12',
-  'Brian Vaughn13',
-  'Brian Vaughn14',
-  'Brian Vaughn15',
-  'Brian Vaughn16',
-  'Brian Vaughn17',
-  'Brian Vaughn18',
-  'Brian Vaughn19',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-  'Brian Vaughn20',
-];
+import React, { useMemo, useState } from 'react';
+import ReactDOM from "react-dom";
 
-function rowRenderer ({ key, index, style }: any) {
-  return (
-    <div
-      key={key}
-      style={style}
-    >
-      {list[index]}
-    </div>
-  )
-}
-const STATUS_LOADING = 1; 
-const STATUS_LOADED = 2;
-
-class Shopping extends React.Component<any, any>{
-
-  _timeoutIdMap: any
+// 在 DOM 中有两个容器是兄弟级 （siblings）
+const appRoot = document.getElementById('app-root');
+const modalRoot = document.getElementById('modal-root');
+class Modal extends React.Component {
+  el: Element
 
   constructor(props: any) {
     super(props);
+    this.el = document.createElement('div');
+  }
 
-    this.state = {
-      loadedRowCount: 0,
-      loadedRowsMap: {},
-      loadingRowCount: 0,
-    };
+  componentDidMount() {
+    // 在 Modal 的所有子元素被挂载后，
+    // 这个 portal 元素会被嵌入到 DOM 树中，
+    // 这意味着子元素将被挂载到一个分离的 DOM 节点中。
+    // 如果要求子组件在挂载时可以立刻接入 DOM 树，
+    // 例如衡量一个 DOM 节点，
+    // 或者在后代节点中使用 ‘autoFocus’，
+    // 则需添加 state 到 Modal 中，
+    // 仅当 Modal 被插入 DOM 树中才能渲染子元素。
+    (modalRoot as Element).appendChild(this.el);
+  }
 
-    this._timeoutIdMap = {};
+  componentWillUnmount() {
+    (modalRoot as Element).removeChild(this.el);
+  }
 
-    this._clearData = this._clearData.bind(this);
-    this._isRowLoaded = this._isRowLoaded.bind(this);
-    this._loadMoreRows = this._loadMoreRows.bind(this);
-    // this._rowRenderer = this._rowRenderer.bind(this);
+  render() {
+    return ReactDOM.createPortal(
+      this.props.children,
+      this.el,
+    );
+  }
+}
+
+class Parent extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {clicks: 0};
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    // 当子元素里的按钮被点击时，
+    // 这个将会被触发更新父元素的 state，
+    // 即使这个按钮在 DOM 中不是直接关联的后代
+    this.setState((state: any) => ({
+      clicks: state.clicks + 1
+    }));
   }
 
   render() {
     return (
-        <InfiniteLoader
-          minimumBatchSize={5}
-          isRowLoaded={this._isRowLoaded}
-          loadMoreRows={this._loadMoreRows}
-          rowCount={list.length}>
-          {({onRowsRendered, registerChild}) => (
-            <AutoSizer disableHeight>
-              {({width}) => (
-                <List
-                  ref={registerChild}
-                  height={200}
-                  onRowsRendered={onRowsRendered}
-                  rowCount={list.length}
-                  rowHeight={30}
-                  rowRenderer={rowRenderer}
-                  width={width}
-                />
-              )}
-            </AutoSizer>
-          )}
-        </InfiniteLoader>
-    );
-  }
-
-  _clearData() {
-    this.setState({
-      loadedRowCount: 0,
-      loadedRowsMap: {},
-      loadingRowCount: 0,
-    });
-  }
-
-  _isRowLoaded({ index } : any) {
-    const {loadedRowsMap} = this.state;
-    return !!loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
-  }
-
-  _loadMoreRows({startIndex, stopIndex} : any) {
-    console.log(startIndex, stopIndex, 22);
-    const {loadedRowsMap, loadingRowCount} = this.state;
-    const increment = stopIndex - startIndex + 1;
-
-    for (var i = startIndex; i <= stopIndex; i++) {
-      loadedRowsMap[i] = STATUS_LOADING;
-    }
-
-    this.setState({
-      loadingRowCount: loadingRowCount + increment,
-    });
-
-    setTimeout(() => {
-      const {loadedRowCount, loadingRowCount} = this.state;
-
-      delete this._timeoutIdMap['a'];
-
-      for (var i = startIndex; i <= stopIndex; i++) {
-        loadedRowsMap[i] = STATUS_LOADED;
-      }
-
-      this.setState({
-        loadingRowCount: loadingRowCount - increment,
-        loadedRowCount: loadedRowCount + increment,
-      });
-
-      promiseResolver();
-    }, 1000 + Math.round(Math.random() * 2000));
-
-    this._timeoutIdMap['a'] = true;
-
-    let promiseResolver: any;
-
-    return new Promise(resolve => {
-      promiseResolver = resolve;
-    });
-  }
-
-  _rowRenderer({index, key, style}: any) {
-    return (
-      <div key={key} style={style}>
-        {index}
+      <div onClick={this.handleClick}>
+        <p>Number of clicks: {this.state.clicks}</p>
+        <p>
+          Open up the browser DevTools
+          to observe that the button
+          is not a child of the div
+          with the onClick handler.
+        </p>
+        <Modal>
+          <Child />
+        </Modal>
       </div>
     );
   }
 }
-// const Shopping  = () => {
-//   let [ scrollToIndex, setScrollToIndex] = useState(1);
-//   // setTimeout(()=>{
-//   //   setScrollToIndex(20);
-//   // }, 5000)
-//   return (
-//     <div className={Style.padding}>
-    {/* <WindowScroller>
-    {({height, isScrolling, registerChild, onChildScroll, scrollTop}) => {
-      return (
-        // AutoSizer 自动更改list高度
-      <div>
-        <AutoSizer disableHeight>
-          {({width}) => (
-            <div>
-              <List
-                ref={el => {
-                  let windo:any = window
-                  windo['listEl'] = el;
-                }}
-                autoHeight  // 指定列表外元素高度为auto
-                className={Style.list} // 指定包含list元素 class 同autoHeight， height
-                height={height}  // 指定列表外元素高度
-                isScrolling={isScrolling}
-                onScroll={onChildScroll} // ???
-                overscanRowCount={2} // 在可见范围内的上下展示行数
-                rowCount={30} // 列表中的函数
-                rowHeight={40} // 行高
-                rowRenderer={rowRenderer} // 行渲染的函数
-                scrollToAlignment="end" // 指定索引使在当前列表中间 出现在可视中
-                scrollToIndex={scrollToIndex} // 指定索引在可见位置
-                scrollTop={scrollTop} // 距离页面的滚动距离 来显示当前list
-                width={width}
-              />
-            </div>
-          )}
-        </AutoSizer>
-      </div>
-      );
-  }}
-  </WindowScroller> */}
-//      <InfiniteLoader
-//           isRowLoaded={()=>{
-//             return false
-//           }}
-//           loadMoreRows={({startIndex, stopIndex}) => {
-//             const {loadedRowsMap, loadingRowCount} = this.state;
-//             const increment = stopIndex - startIndex + 1;
-        
-//             for (var i = startIndex; i <= stopIndex; i++) {
-//               loadedRowsMap[i] = STATUS_LOADING;
-//             }
-        
-//             this.setState({
-//               loadingRowCount: loadingRowCount + increment,
-//             });
-        
-//             const timeoutId = setTimeout(() => {
-//               const {loadedRowCount, loadingRowCount} = this.state;
-        
-//               delete this._timeoutIdMap[timeoutId];
-        
-//               for (var i = startIndex; i <= stopIndex; i++) {
-//                 loadedRowsMap[i] = STATUS_LOADED;
-//               }
-        
-//               this.setState({
-//                 loadingRowCount: loadingRowCount - increment,
-//                 loadedRowCount: loadedRowCount + increment,
-//               });
-        
-//               promiseResolver();
-//             }, 1000 + Math.round(Math.random() * 2000));
-        
-//             this._timeoutIdMap[timeoutId] = true;
-        
-//             let promiseResolver;
-        
-//             return new Promise(resolve => {
-//               promiseResolver = resolve;
-//             });
-//           }}
-//           rowCount={list.length}>
-//           {({onRowsRendered, registerChild}) => (
-//             <AutoSizer disableHeight>
-//               {({width}) => (
-//                 <List
-//                   ref={registerChild}
-//                   height={200}
-//                   onRowsRendered={onRowsRendered}
-//                   rowCount={list.length}
-//                   rowHeight={30}
-//                   rowRenderer={rowRenderer}
-//                   width={width}
-//                 />
-//               )}
-//             </AutoSizer>
-//           )}
-//         </InfiniteLoader>
-//   </div>
-//   );
+
+function Child() {
+  // 这个按钮的点击事件会冒泡到父元素
+  // 因为这里没有定义 'onClick' 属性
+  return (
+    <div className="modal">
+      <button>Click</button> =》 child 的点击依然会触发parent里面的事件
+    </div>
+  );
+}
+
+export default Parent;
+
+// import { Component } from "react";
+// import { DatePicker, List } from 'antd-mobile';
+// import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
+
+// const nowTimeStamp = Date.now();
+// const now = new Date(nowTimeStamp);
+// // GMT is not currently observed in the UK. So use UTC now.
+// const utcNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000));
+
+// // Make sure that in `time` mode, the maxDate and minDate are within one day.
+// let minDate = new Date(nowTimeStamp - 1e7);
+// const maxDate = new Date(nowTimeStamp + 1e7);
+// // console.log(minDate, maxDate);
+// if (minDate.getDate() !== maxDate.getDate()) {
+//   // set the minDate to the 0 of maxDate
+//   minDate = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
 // }
-export default Shopping
+
+// function formatDate(date: any) {
+//   /* eslint no-confusing-arrow: 0 */
+//   const pad = (n: any) => n < 10 ? `0${n}` : n;
+//   const dateStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+//   const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+//   return `${dateStr} ${timeStr}`;
+// }
+
+// class Demo extends Component {
+//   state = {
+//     date: now,
+//     time: now,
+//     utcDate: utcNow,
+//     dpValue: null,
+//     customChildValue: null,
+//     visible: false,
+//   }
+//   render() {
+//     return (
+//       <List className="date-picker-list" style={{ backgroundColor: 'white' }}>
+//         <DatePicker
+//           dismissText=" "
+//           mode="date"
+//           title=""
+//           extra="Optional"
+//           value={this.state.date}
+//           onChange={date => this.setState({ date })}
+//           minDate={new Date()}
+//         >
+//           <List.Item arrow="horizontal">Date</List.Item>
+//         </DatePicker>
+//       </List>
+//     );
+//   }
+// }
+
+// export default Demo;

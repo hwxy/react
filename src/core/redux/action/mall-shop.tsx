@@ -7,5 +7,5 @@ export const addnum = createAction('ADD', (amount: any) => {
 })      
 
 export const delnum = createAction('DEl', (amount: any) => {
-  return 2;
+  return 2;    
 })      

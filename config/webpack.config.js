@@ -36,6 +36,11 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const EntrypointAssetsPlugin = require('./plugin/webpackEntrypointsPlugin');
+const entrypointAssetsPlugin = new EntrypointAssetsPlugin({
+  path: path.resolve(__dirname, './webpack-entrypoints.json'),
+});
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -518,6 +523,7 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      entrypointAssetsPlugin,
       new webpack.ProvidePlugin({
         React: "react"
       }),

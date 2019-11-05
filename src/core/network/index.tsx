@@ -4,6 +4,8 @@ import response from "@/core/network/interceptors/response.tsx";
 const instance = axios.create({
   baseURL: "https://www.easy-mock.com/mock/5d5dfa3814b5706759ab5234"
 });
+
+
 const CancelToken = axios.CancelToken;
 //暂时没想好要不要用cancelTotal
 export const cancelTotal: object[] = [];
@@ -21,7 +23,7 @@ export const apiGet = (url: string, params = {}) => {
   };
   cancelData.url = url;
   return instance.get(url, {
-    ...params,
+    params,
     cancelToken: new CancelToken(c => {
       cancelData.cancel = c;
       cancelTotal.push(cancelData);

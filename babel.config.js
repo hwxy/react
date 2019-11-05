@@ -3,6 +3,7 @@ module.exports = {
   presets: ["react-app"],
   plugins: [
     "lodash",
+    '@babel/plugin-proposal-export-default-from',
     [
       "module-resolver",
       {
