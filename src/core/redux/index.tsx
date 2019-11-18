@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import thunk from 'redux-thunk';
-
+// import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 let reducerFile = require['context']('./reducer', true, /.tsx$/);
 let reducers: object = {};
@@ -9,7 +9,7 @@ reducerFile.keys().forEach((item: string): void => {
     Object.assign(reducers, value);
 })
          
-let middlware: any[] = [thunk];
+let middlware: any[] = [promiseMiddleware];
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default createStore(
