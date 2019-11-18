@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/hwxy/react/compare/v0.2.2...v0.2.3) (2019-11-18)
+
+
+### Features
+
+* **parser:** we now have a parser \o/ ([fdb3f2e](https://github.com/hwxy/react/commit/fdb3f2e))
+
 ### [0.2.2](https://github.com/hwxy/react/compare/v0.2.1...v0.2.2) (2019-11-18)
 
 ### [0.1.7](https://github.com/hwxy/react/compare/v0.2.1...v0.1.7) (2019-11-18)
