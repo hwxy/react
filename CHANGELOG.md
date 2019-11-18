@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/hwxy/react/compare/v0.2.4...v0.2.5) (2019-11-18)
+
+
+### Features
+
+* **预订:** 大萨达 ([4f5a470](https://github.com/hwxy/react/commit/4f5a470))
+
 ### [0.2.4](https://github.com/hwxy/react/compare/v0.2.3...v0.2.4) (2019-11-18)
 
 
