@@ -182,6 +182,7 @@ const MapStateToProps = (state: any, props: any): object => {
 
 
 
+
 const MapDispatchToProps = (dispatch: any, props: any): object => {
   return {
     add(){
