@@ -2,12 +2,11 @@ import React from "react";
 // base ui comp
 import { InputItem, Button, WingBlank, Toast } from "antd-mobile";
 // scss
-import Style from "@/asset/sass/views/mall-login.module.scss";
+import Style from "@/asset/sass/views/mall-register.module.scss";
 
 // network
 import { apiPost } from "@/core/network";
-// util
-import cookie from "won-util/cookie";       
+
 
 interface ContainerProps{}
 
@@ -19,14 +18,14 @@ interface ContainerState {
 }
 
 
-class Login extends React.Component<ContainerProps, ContainerState> {
+class Register extends React.Component<ContainerProps, ContainerState> {
   state = {
     account: "",
     accountError: false,
     password: "",
     passwordError: false,
   }
-  onLogin = () => {
+  onRegister = () => {
     let { account, password } = this.state;
     let isVaildAccount =  this.accountVaild(account);
     let isVaildPassword =  this.passwordVaild(password);
@@ -42,14 +41,12 @@ class Login extends React.Component<ContainerProps, ContainerState> {
       return;
     }
 
-    apiPost("/api/login", 
+    apiPost("/api/register", 
       {
-        account,
+        phone: account,
         password
       }
-    ).then((res: any) => {
-      cookie.set('account', account, { expires: 7, path: '' });
-      cookie.set('sessionToken', res.token, { expires: 7, path: '' });
+    ).then((res) => {
     });
   }
 
@@ -123,7 +120,7 @@ class Login extends React.Component<ContainerProps, ContainerState> {
             </InputItem>
             <WingBlank size="lg">
               <Button
-                onClick={this.onLogin}
+                onClick={this.onRegister}
                 type="primary"
                 size="large"
                 className="mt30"
@@ -138,4 +135,4 @@ class Login extends React.Component<ContainerProps, ContainerState> {
   }
 }
 
-export default Login;
+export default Register;

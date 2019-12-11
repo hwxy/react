@@ -1,8 +1,9 @@
-import axios, { AxiosResponse, AxiosRequestConfig }  from "axios";
-import request from "@/core/network/interceptors/reques.tsx";
-import response from "@/core/network/interceptors/response.tsx";
+import axios from "axios";
+import { request, requestError } from "@/core/network/interceptors/reques.tsx";
+import { response, responseError }  from "@/core/network/interceptors/response.tsx";
+
 const instance = axios.create({
-  baseURL: "https://www.easy-mock.com/mock/5d5dfa3814b5706759ab5234"
+  baseURL: "http://localhost:8080"
 });
 
 
@@ -58,7 +59,7 @@ export const apiDelete = (url: string, params = {}) => {
   });
 };
 
-instance.interceptors.request.use(request);
-instance.interceptors.response.use(response);
+instance.interceptors.request.use(request, requestError);
+instance.interceptors.response.use(response, responseError);
 
 export default instance;

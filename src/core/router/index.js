@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Suspense, lazy } from "react";
 let configRouters = [];
-const routers = require.context("./", true, /\.js$/);
+const routers = require.context("./", true, /\.(js|tsx)$/);
 routers.keys().forEach(key => {
   if (key === "./index.js") return;
   configRouters = configRouters.concat(routers(key).default);

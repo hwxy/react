@@ -9,11 +9,13 @@ import Style from "@/asset/sass/views/mall-shopping.module.scss";
 
 import { apiGet } from "@/core/network/index.tsx";
   
-import 'react-virtualized/styles.css';
+import FormPath, { Pattern as FormPathPattern } from 'cool-path'
 
 class Child1 extends React.Component{
    
-  state = {}
+  state = {
+    value: "1"
+  }
   
   componentWillMount(){
     console.log('willMount', 2);
@@ -43,33 +45,33 @@ class Child1 extends React.Component{
 
   render(){
     return (
-      <div>222</div>
+    <div>{this.state.value}</div>
     )
   } 
 }
 class Child2 extends React.Component{
   state = {}
 
-  componentWillMount(){
-    console.log('willMount', 3);
-  }
+  // componentWillMount(){
+  //   console.log('willMount', 3);
+  // }
 
   componentDidMount(){
     console.log('didMount', 3);
   }
 
-  // static getDerivedStateFromProps(){
-  //   console.log('DerivedState', 3);
-  //   return null;
-  // }
-  // getSnapshotBeforeUpdate(){
-  //   console.log('Snapshot', 3);
-  //   return null;
-  // }   
-
-  componentWillReceiveProps(){
-    console.log('receiveProps', 3);
+  static getDerivedStateFromProps(){
+    console.log('DerivedState', 3);
+    return null;
   }
+  getSnapshotBeforeUpdate(){
+    console.log('Snapshot', 3);
+    return null;
+  }   
+
+  // componentWillReceiveProps(){
+  //   console.log('receiveProps', 3);
+  // }
 
   componentDidUpdate(){
     console.log('didupdate', 3);
@@ -97,34 +99,38 @@ interface P{
 
 class Parent extends React.Component<P, S>{
 
-  state = {}
+  state = {
+    b: 1
+  }
 
-  ele: RefObject<any>
+  ele: any
 
   constructor(props: any){
     super(props);
     this.ele = React.createRef();
+
+    console.log(FormPath.parse("radio"));
   }
 
-  // static getDerivedStateFromProps(){
-  //   console.log('DerivedState', 1);
-  //   return null;
-  // }
+  static getDerivedStateFromProps(){
+    console.log('DerivedState', 1);
+    return null;
+  }
   
-  // getSnapshotBeforeUpdate(){
-  //   console.log('Snapshot', 1);
-  //   return null;
-  // }
+  getSnapshotBeforeUpdate(){
+    console.log('Snapshot', 1);
+    return null;
+  }
 
   // componentWillMount(){
   //   console.log('willMount', 1);
   // }
 
-  // componentDidUpdate(){
-  //   console.log('didupdate', 1);
-  // }
+  componentDidUpdate(){
+    console.log('didupdate', 1);
+  }
   
-  // componentDidMount(){
+  // componentDidMount(){;
   //   console.log('didMount', 1);
 
   // }
@@ -134,16 +140,22 @@ class Parent extends React.Component<P, S>{
   // }
 
   render(){
-    let { add, del, set } = this.props;
+    // let { add, del, set } = this.props;
     return (
       <div>
         <div>
-          {/* <Child1></Child1>
+          <Child1 ref={this.ele}></Child1>
           <Child2></Child2>
-          <Child3></Child3> */}
-          <button onClick={()=>{add()}}>add点击</button>
+          <Child3></Child3>
+          <button onClick={() => {
+            console.log(this.ele.current);
+            this.ele.current.setState({
+              value: 2
+            })
+          }}>点击</button>
+          {/* <button onClick={()=>{add()}}>add点击</button>
           <button onClick={()=>{del()}}>del点击</button>
-          <button onClick={()=>{set()}}>set点击</button>
+          <button onClick={()=>{set()}}>set点击</button> */}
         </div>
       </div>
     )
@@ -155,7 +167,7 @@ class Parent extends React.Component<P, S>{
 import { createSelector } from "reselect";
 
 const getVisibilityFilter = (state : any) => {
-  console.log(state)
+  console.log(state);
   return state.mallShop.counter;
 }
 //下面的函数是经过包装的
