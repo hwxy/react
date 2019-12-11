@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/hwxy/react/compare/v0.2.6...v0.2.7) (2019-12-11)
+
+
+### Bug Fixes
+
+* **parsing:** fixed a bug in our parser ([11792bd](https://github.com/hwxy/react/commit/11792bd))
+
 ### [0.2.6](https://github.com/hwxy/react/compare/v0.2.5...v0.2.6) (2019-11-18)
 
 ### [0.2.5](https://github.com/hwxy/react/compare/v0.2.4...v0.2.5) (2019-11-18)
