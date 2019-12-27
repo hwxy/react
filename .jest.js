@@ -6,7 +6,7 @@ module.exports =  {
   "resolver": "jest-pnp-resolver",
   "setupFiles": [
     "react-app-polyfill/jsdom",
-    "<rootDir>/src/setupTests"
+    "<rootDir>/setupTests"
   ],
   "testMatch": [
     "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",

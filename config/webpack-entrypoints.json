@@ -3,15 +3,13 @@
     "files": {
       "js": [
         "/static/js/bundle.js",
-        "/static/js/3.chunk.js",
-        "/static/js/main.chunk.js",
-        "/main.64888f8da869c898488d.hot-update.js"
+        "/static/js/6.chunk.js",
+        "/static/js/main.chunk.js"
       ],
       "map": [
         "/static/js/bundle.js.map",
-        "/static/js/3.chunk.js.map",
-        "/static/js/main.chunk.js.map",
-        "/main.64888f8da869c898488d.hot-update.js.map"
+        "/static/js/6.chunk.js.map",
+        "/static/js/main.chunk.js.map"
       ]
     }
   }

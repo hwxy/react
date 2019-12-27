@@ -19,5 +19,5 @@ export const setNum = createAction('SET', async (amount: any) => {
     }, 5000)
   });
   let data = await promise;
-  return data;    
+  return data;     
 })           

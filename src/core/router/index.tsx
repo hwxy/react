@@ -1,20 +1,20 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Suspense, lazy } from "react";
-let configRouters = [];
+let configRouters: any = [];
 const routers = require.context("./", true, /\.(js|tsx)$/);
 routers.keys().forEach(key => {
-  if (key === "./index.js") return;
+  if (key === "./index.tsx") return;
   configRouters = configRouters.concat(routers(key).default);
 });
 const Router = () => {
-  const route = configRouters.map((v, i) => {
+  const route = configRouters.map((v: any, i: any) => {
     const Comp = lazy(v.component);
     return (
       <Route
         key={i}
         exact
         path={v.path}
-        component={props => <Comp {...props} />}
+        component={(props : any) => <Comp {...props} />}
       />
     );
   });
