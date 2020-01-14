@@ -1,26 +1,26 @@
 import axios from "axios";
 import { request, requestError } from "@/core/network/interceptors/reques.tsx";
-import { response, responseError }  from "@/core/network/interceptors/response.tsx";
+import {
+  response,
+  responseError
+} from "@/core/network/interceptors/response.tsx";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080"
+  baseURL: window.location.origin
 });
-
 
 const CancelToken = axios.CancelToken;
 //暂时没想好要不要用cancelTotal
 export const cancelTotal: object[] = [];
 
 interface ICancelData {
-  url: string,
-  cancel?: any
+  url: string;
+  cancel?: any;
 }
 
-
-
 export const apiGet = (url: string, params = {}) => {
-  let cancelData: ICancelData  = {
-    url: '',
+  let cancelData: ICancelData = {
+    url: ""
   };
   cancelData.url = url;
   return instance.get(url, {
@@ -29,11 +29,11 @@ export const apiGet = (url: string, params = {}) => {
       cancelData.cancel = c;
       cancelTotal.push(cancelData);
     })
-  })
+  });
 };
 export const apiPost = (url: string, params = {}) => {
-  let cancelData: ICancelData  = {
-    url: '',
+  let cancelData: ICancelData = {
+    url: ""
   };
   cancelData.url = url;
   return instance.post(url, {
@@ -41,8 +41,8 @@ export const apiPost = (url: string, params = {}) => {
   });
 };
 export const apiPut = (url: string, params = {}) => {
-  let cancelData: ICancelData  = {
-    url: '',
+  let cancelData: ICancelData = {
+    url: ""
   };
   cancelData.url = url;
   return instance.put(url, {
@@ -50,8 +50,8 @@ export const apiPut = (url: string, params = {}) => {
   });
 };
 export const apiDelete = (url: string, params = {}) => {
-  let cancelData: ICancelData  = {
-    url: '',
+  let cancelData: ICancelData = {
+    url: ""
   };
   cancelData.url = url;
   return instance.delete(url, {

@@ -4,6 +4,7 @@ module.exports = {
   plugins: [
     "lodash",
     "@babel/plugin-proposal-export-default-from",
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
     [
       "module-resolver",
       {

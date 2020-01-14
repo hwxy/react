@@ -36,9 +36,17 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
-const EntrypointAssetsPlugin = require('./plugin/webpackEntrypointsPlugin');
+const EntrypointAssetsPlugin = require("./plugin/webpackEntrypointsPlugin");
+
+let env = process.env.NODE_ENV;
+
+let entryPointUrl =
+  env === "production"
+    ? "../build/webpack-entrypoints.json"
+    : "./webpack-entrypoints.json";
+
 const entrypointAssetsPlugin = new EntrypointAssetsPlugin({
-  path: path.resolve(__dirname, './webpack-entrypoints.json'),
+  path: path.resolve(__dirname, entryPointUrl)
 });
 
 // This is the production and development configuration.
@@ -308,25 +316,23 @@ module.exports = function(webpackEnv) {
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-        "react-native": "react-native-web",
         "@": path.join(__dirname, "..", "src"),
         "won-core": path.join(__dirname, "..", "src/core"),
         "won-service": path.join(__dirname, "..", "src/won-service"),
         "won-common": path.join(__dirname, "..", "src/won-service/common"),
-        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp"),
-        "won-util": path.join(__dirname, "..", "src/won-service/util")
+        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp")
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
-        PnpWebpackPlugin,
+        PnpWebpackPlugin
 
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
-        new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
+        // new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
       ]
     },
     resolveLoader: {

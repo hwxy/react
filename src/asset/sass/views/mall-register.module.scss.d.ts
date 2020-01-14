@@ -1,5 +1,4 @@
 export const container: string;
-export const title: string;
 export const loginContent: string;
 export const otherLogin: string;
 export const loginHeader: string;

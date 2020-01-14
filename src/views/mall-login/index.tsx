@@ -1,22 +1,24 @@
 import React from "react";
 // base ui comp
 import { InputItem, Button, WingBlank, Toast } from "antd-mobile";
+//
+import { withRouter, RouteComponentProps } from 'react-router'
 // scss
 import Style from "@/asset/sass/views/mall-login.module.scss";
-
 // network
-import { apiPost } from "@/core/network";
+import { apiPost } from "@/core/network"; 
 // util
-import cookie from "won-util/cookie";       
+import cookie from "@/core/util/cookie";       
+     
+type ContainerProps = RouteComponentProps<any> & {}
 
-interface ContainerProps{}
-
-interface ContainerState {
+interface ContainerState { 
   account: string,
   accountError: boolean,
-  password: string,
+  password: string, 
   passwordError: boolean,
-}
+  inputType: any
+}  
 
 
 class Login extends React.Component<ContainerProps, ContainerState> {
@@ -25,34 +27,39 @@ class Login extends React.Component<ContainerProps, ContainerState> {
     accountError: false,
     password: "",
     passwordError: false,
+    inputType: 'password'
   }
   onLogin = () => {
     let { account, password } = this.state;
+    let { history } = this.props;
     let isVaildAccount =  this.accountVaild(account);
     let isVaildPassword =  this.passwordVaild(password);
     if(!isVaildAccount || !isVaildPassword){
       if(!isVaildAccount) this.setState({
         accountError: true
       });
-
       if(!isVaildPassword) this.setState({
         passwordError: true
       });
-
       return;
     }
-
     apiPost("/api/login", 
       {
-        account,
-        password
+        phone: account,
+        password   
       }
     ).then((res: any) => {
-      cookie.set('account', account, { expires: 7, path: '' });
-      cookie.set('sessionToken', res.token, { expires: 7, path: '' });
+      if(res){
+        let { status, message } = res
+        if(status == 2){
+          cookie.set('phone', account, { expires: 7, path: '' });
+          cookie.set('sessionToken', res.token, { expires: 7, path: '' });
+          history.push('/shopping')
+        }
+        Toast.info(message);
+      }
     });
   }
-
   accountVaild = (value: string): boolean => {
     let regExp: RegExp = /^1[3456789]\d{9}$/;    
     return regExp.test(value);
@@ -86,19 +93,27 @@ class Login extends React.Component<ContainerProps, ContainerState> {
   onPassWordErrorClick = () => {
     Toast.info('请输入6到12位密码');
   }
-  render() {
-    let { accountError, passwordError } = this.state;
+  onRegister = () => {
+    this.props.history.push('/register')
+  } 
+  renderEye = () => {
     return (
-      <div className={Style.container}>
+      <div className="icon-99" onClick={() => {
+        let { inputType } = this.state;
+        this.setState({
+          inputType: inputType == 'password' ? 'text' : 'password'
+        })
+      }}></div>
+    )
+  }
+  render() {
+    let { accountError, passwordError, inputType } = this.state;
+    return ( 
+      <div className={Style.container}>     
         <form>
-          <div className={Style.title}>
-            <i
-              className="icon-161 f-l"
-              onClick={() => {
-                window.history.go(-1);
-              }}
-            />
-            <span className="pr40">注册</span>
+          <div className={Style.tip}>
+            <span className={Style.tip__message}>没有账号？</span>
+            <span className={Style.tip__btn} onClick={this.onRegister}>申请</span>
           </div>
           <div className={Style['loginContent']}>
             <InputItem
@@ -114,9 +129,10 @@ class Login extends React.Component<ContainerProps, ContainerState> {
               error={passwordError}
               onChange={this.onPassWordChange}
               placeholder="请输入6-20位密码"
-              type="password"
+              type={inputType as any}
               maxLength={20}
               clear
+              extra={this.renderEye()}
               onErrorClick={this.onPassWordErrorClick}
             >
               <span className="fz20">密码</span>
@@ -128,7 +144,7 @@ class Login extends React.Component<ContainerProps, ContainerState> {
                 size="large"
                 className="mt30"
               >        
-              注册
+              登录
               </Button>
             </WingBlank>
           </div>
@@ -138,4 +154,4 @@ class Login extends React.Component<ContainerProps, ContainerState> {
   }
 }
 
-export default Login;
+export default withRouter(Login);

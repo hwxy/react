@@ -1,23 +1,21 @@
-
-import { createAction } from 'redux-actions';
+import { createAction } from "redux-actions";
 
 // 第二个参数为 payload 的转换器
-export const addnum = createAction('ADD', (amount: any) => {
+export const addnum = createAction("SHOP__ADD", (num: number) => {
+  return num;
+});
+
+export const delnum = createAction("SHOP__DEL", (amount: any) => {
   return 2;
-})      
+});
 
-export const delnum = createAction('DEl', (amount: any) => {
-  return 2;    
-})           
-
-export const setNum = createAction('SET', async (amount: any) => {
-  console.log(amount, 2);
-  let promise = new Promise((res)=>{
-    setTimeout(()=>{
+export const setNum = createAction("SHOP__SET", async (amount: any) => {
+  let promise = new Promise(res => {
+    setTimeout(() => {   
       console.log(111);
-      res(3)
-    }, 5000)
+      res(3);
+    }, 5000);     
   });
   let data = await promise;
-  return data;     
-})           
+  return data;
+});

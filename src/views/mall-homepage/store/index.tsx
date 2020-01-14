@@ -1,36 +1,37 @@
 import { apiGet } from "@/core/network/index.tsx";
-
-
-interface IBanner{
-  icon: string,
+import axios from 'axios';
+interface IBanner {
+  icon: string;
 }
 
-interface IQuick{
-  icon: string,
-  text: string
+interface IQuick {
+  icon: string;
+  text: string;
 }
-
 
 // interface IAjaxResults{
 //   data: Idata,
 // }
 
-class HomePageStore{
+class HomePageStore {
+  data: any;
 
-  data: any
-
-  init = async (): Promise<void>=> {
-    this.data = await apiGet('/_copy/homepage');
+  init = async (): Promise<void> => {
+    // this.data = await apiGet("/_copy/homepage");
+    let { data } = await axios({
+      url: 'https://www.easy-mock.com/mock/5e1d59b364a3c20d7f366fc1/_copy_copy/homepage',
+      method: 'get',
+    })
+    this.data = data;    
   };
 
   getBanner = (): IBanner[] => {
     return this.data.banner || [];
-  }
+  };
 
   getQuick = (): IQuick[] => {
     return this.data.quick || [];
-  }
-
+  };
 }
 
 export default new HomePageStore();

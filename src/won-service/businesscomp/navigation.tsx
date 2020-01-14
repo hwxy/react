@@ -2,16 +2,11 @@ import React from "react";
 import Style from "@/asset/sass/won-service/businesscomp/navigation.module.scss";
 import { NavLink } from "react-router-dom";
 
-interface ContainerProps{
-  location?: any,
-  QQBtnShow?: any
-}
-
 interface ContainerState {
-  render?: any
+  render?: any;
 }
 
-class Navigation extends React.Component<ContainerProps, ContainerState> {
+class Navigation extends React.Component<any, ContainerState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -22,11 +17,15 @@ class Navigation extends React.Component<ContainerProps, ContainerState> {
   render() {
     let pathname = this.props.location.pathname;
     return (
-      <div className={Style['container']}>
-        <div className={Style['nav']}>
+      <div className={Style["container"]}>
+        <div className={Style["nav"]}>
           <NavLink
             to="/"
-            className={pathname === "/" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`}
+            className={
+              pathname === "/"
+                ? `${Style["navIcon"]} ${Style["navActive"]}`
+                : `${Style["navIcon"]}`
+            }
           >
             <span className="icon-12 fz25" />
             <span>首页</span>
@@ -38,7 +37,9 @@ class Navigation extends React.Component<ContainerProps, ContainerState> {
           <NavLink
             to="/login"
             className={
-              pathname === "/login" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`
+              pathname === "/login"
+                ? `${Style["navIcon"]} ${Style["navActive"]}`
+                : `${Style["navIcon"]}`
             }
           >
             <span className="icon-17 fz25" />
@@ -47,7 +48,9 @@ class Navigation extends React.Component<ContainerProps, ContainerState> {
           <NavLink
             to="/icon"
             className={
-              pathname === "/icon" ? `${Style['navIcon']} ${Style['navActive']}`: `${Style['navIcon']}`
+              pathname === "/icon"
+                ? `${Style["navIcon"]} ${Style["navActive"]}`
+                : `${Style["navIcon"]}`
             }
           >
             <span className="icon-146 fz25" />

@@ -5,7 +5,7 @@ const defaultState = { counter: 10 };
 
 const mallPage = handleActions(
   {
-    ADD: (
+    HOMEPAGE__ADD: (
       state,
       action
     ) => {
@@ -18,7 +18,7 @@ const mallPage = handleActions(
 
 const mallPage2 = handleActions(
   {
-    DEl: (
+    HOMEPAGE__DEl: (
       state,
       action
     ) => {

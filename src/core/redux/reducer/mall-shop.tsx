@@ -1,29 +1,29 @@
-import {handleActions, combineActions, createAction } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 
-const defaultState = { counter: 10 };
+const defaultState = { num: 10 };
 
 const mallShop = handleActions(
   {
-    ADD: (
+    SHOP__ADD: (
       state,
       action
     ) => {
-      console.log(action, 'ADD');
-      return { ...state, counter: state.counter + (action as any).payload.counter };
+      let num = action.payload + (state.num  as any);      
+      return { ...state, num };
     },
-    DEl: (   
+    SHOP__DEl: (   
       state,
-      action
+      action     
     ) => {
       console.log(action, 'DEl');
-      return { ...state, counter: state.counter + (action as any).payload.counter };
+      return { ...state };
     },
-    SET: (   
+    SHOP__SET: (   
       state,
       action
     ) => {
       console.log(action, 'Set');
-      return { ...state, counter: (action as any).payload };
+      return { ...state };
     },
   }, 
   defaultState

@@ -1,66 +1,45 @@
 // comp
 import StateHelp from "won-common/stateHelp";
-
 // scss
 import Style from "@/asset/sass/views/mall-homepage.module.scss";
-
-
 // uicomp
 import { WingBlank } from "antd-mobile";
-
 // buscomp
 import Navigation from "won-bcomp/navigation";
-import Search from "won-bcomp/mall-homepage/search";
+import Search from "won-bcomp/search";
 import Carousel from "won-common/carousel";
 import Grid from "won-common/grid";
-import loadingHoc from "../../won-service/common/loading";
-
-// redux
-import { connect } from 'react-redux';
-import action from '../../core/redux/action/mall-homepage'
-
+import loadingHoc from "won-common/loading";
 // store
-import Store from './store';
-
-// lodash
-import _ from 'lodash';
-
-interface IGridData{
-  icon: string,
-  text: string  
-}
+import Store from "./store";
 class HomePage extends StateHelp {
-  constructor(props: any) {
-    super(props);
-  }
-    
-  renderCarousel(){
-    let list = Store.getBanner().map((val, index)=>(
-        <a
+  renderCarousel() {
+    let list = Store.getBanner().map((val, index) => (
+      <a
         key={index}
         style={{
           width: "100%",
-          display: "block",
+          display: "block"
         }}
       >
         <img
           style={{
             display: "block",
-            width: '100%'
+            width: "100%"
           }}
           alt=""
           src={val.icon}
         />
       </a>
     ));
-    
+          console.log(Store.getBanner());
+          
     return (
-      <Carousel className={Style['carousel']} autoplay={false} infinite={false}>
+      <Carousel className={Style["carousel"]} autoplay={false} infinite={false}>
         {list}
-     </Carousel>
+      </Carousel>
     );
   }
-
   render() {
     let GridData = Store.getQuick();
     return (
@@ -69,7 +48,7 @@ class HomePage extends StateHelp {
         {this.renderCarousel()}
         <Grid data={GridData} />
         <WingBlank size="md">
-          <div className={Style['toutiao__container']}>
+          <div className={Style["toutiao__container"]}>
             <div className={Style["toutiao__title"]}>呼呼头条</div>
             <Carousel
               vertical
@@ -90,19 +69,7 @@ class HomePage extends StateHelp {
     );
   }
 }
-// const mapStateToProps = () => {
-//   return {
-//     a:1
-//   };
-// },
-// mapDispatchToProps = (dispatch: any) => {
-//   return {
-//     init: () => { 
-//       return dispatch(action());
-//     }
-//   };
-// };
 
-export default loadingHoc(async ()=>{
+export default loadingHoc(async () => {
   await Store.init();
 }, HomePage);

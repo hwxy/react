@@ -14,7 +14,7 @@ const Router = () => {
         key={i}
         exact
         path={v.path}
-        component={(props : any) => <Comp {...props} />}
+        component={(props: any) => <Comp {...props} />}
       />
     );
   });

@@ -1,28 +1,27 @@
-import React, { Component, RefObject, useState } from 'react';
+import React  from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { addnum, delnum, setNum } from "@/core/redux/action/mall-shop";
+import { addnum } from "@/core/redux/action/mall-shop";
 
 // scss
 import Style from "@/asset/sass/views/mall-shopping.module.scss";
 
 import { apiGet } from "@/core/network/index.tsx";
-  
-import FormPath, { Pattern as FormPathPattern } from 'cool-path'
 
-class Child1 extends React.Component{
-   
+import { createSelector } from "reselect";
+
+class Child1 extends React.Component {
   state = {
     value: "1"
-  }
-  
-  componentWillMount(){
-    console.log('willMount', 2);
+  };
+
+  componentWillMount() {
+    console.log("willMount", 2);
   }
 
-  componentDidMount(){
-    console.log('didMount', 2);
+  componentDidMount() {
+    console.log("didMount", 2);
   }
 
   // static getDerivedStateFromProps(){
@@ -35,90 +34,77 @@ class Child1 extends React.Component{
   //   return null;
   // }
 
-  componentWillReceiveProps(){
-    console.log('receiveProps', 2);
+  componentWillReceiveProps() {
+    console.log("receiveProps", 2);
   }
 
-  componentDidUpdate(){
-    console.log('didupdate', 2);
+  componentDidUpdate() {
+    console.log("didupdate", 2);
   }
 
-  render(){
-    return (
-    <div>{this.state.value}</div>
-    )
-  } 
+  render() {
+    return <div>{this.state.value}</div>;
+  }
 }
-class Child2 extends React.Component{
-  state = {}
+class Child2 extends React.Component {
+  state = {};
 
   // componentWillMount(){
   //   console.log('willMount', 3);
   // }
 
-  componentDidMount(){
-    console.log('didMount', 3);
+  componentDidMount() {
+    console.log("didMount", 3);
   }
 
-  static getDerivedStateFromProps(){
-    console.log('DerivedState', 3);
+  static getDerivedStateFromProps() {
+    console.log("DerivedState", 3);
     return null;
   }
-  getSnapshotBeforeUpdate(){
-    console.log('Snapshot', 3);
+  getSnapshotBeforeUpdate() {
+    console.log("Snapshot", 3);
     return null;
-  }   
+  }
 
   // componentWillReceiveProps(){
   //   console.log('receiveProps', 3);
   // }
 
-  componentDidUpdate(){
-    console.log('didupdate', 3);
+  componentDidUpdate() {
+    console.log("didupdate", 3);
   }
 
-  render(){
-    return (
-      <div>333</div>
-    )
-  } 
+  render() {
+    return <div>333</div>;
+  }
 }
 
 const Child3 = () => {
-  return (
-    <div>44</div>
-  )
-}
+  return <div>44</div>;
+};
 
-interface S{}
-interface P{
-  add: () => {},
-  del: () => {},
+interface S {}
+interface P {
+  add: () => {};
+  del: () => {};
   [propName: string]: any;
 }
 
-class Parent extends React.Component<P, S>{
-
+class Parent extends React.Component<P, S> {
   state = {
     b: 1
-  }
-
-  ele: any
-
-  constructor(props: any){
+  };
+  constructor(props: any) {
     super(props);
-    this.ele = React.createRef();
-
-    console.log(FormPath.parse("radio"));
   }
 
-  static getDerivedStateFromProps(){
-    console.log('DerivedState', 1);
+  static getDerivedStateFromProps() {
+    console.log("DerivedState", 1);
     return null;
   }
-  
-  getSnapshotBeforeUpdate(){
-    console.log('Snapshot', 1);
+
+  getSnapshotBeforeUpdate() {
+    console.log("Snapshot", 1);
     return null;
   }
 
@@ -126,10 +112,10 @@ class Parent extends React.Component<P, S>{
   //   console.log('willMount', 1);
   // }
 
-  componentDidUpdate(){
-    console.log('didupdate', 1);
+  componentDidUpdate() {
+    console.log("didupdate", 1);
   }
-  
+
   // componentDidMount(){;
   //   console.log('didMount', 1);
 
@@ -139,77 +125,60 @@ class Parent extends React.Component<P, S>{
   //   console.log('receiveProps', 1);
   // }
 
-  render(){
-    // let { add, del, set } = this.props;
+  render() {
+    let { add, mallShop } = this.props;
+
     return (
       <div>
         <div>
-          <Child1 ref={this.ele}></Child1>
+          {/* <Child1></Child1>
           <Child2></Child2>
-          <Child3></Child3>
-          <button onClick={() => {
-            console.log(this.ele.current);
-            this.ele.current.setState({
-              value: 2
-            })
-          }}>点击</button>
-          {/* <button onClick={()=>{add()}}>add点击</button>
-          <button onClick={()=>{del()}}>del点击</button>
-          <button onClick={()=>{set()}}>set点击</button> */}
+          <Child3></Child3> */}
+          { mallShop.num }
+          <button onClick={()=>{add()}}>add点击</button>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
-
-import { createSelector } from "reselect";
-
-const getVisibilityFilter = (state : any) => {
-  console.log(state);
-  return state.mallShop.counter;
-}
+// const getVisibilityFilter = (state: any) => {
+//   console.log(state);
+//   return state.mallShop.counter;
+// };
 //下面的函数是经过包装的
-export const getVisibleTodos = createSelector(
-  [ getVisibilityFilter],
-  (filter: number) => {
-    console.log(11);
-    switch (filter) {
-      case 1:
-        return 1
-      case 2:
-        return 2
-    }
-  }
-)
-
-
+// export const getVisibleTodos = createSelector(
+//   [getVisibilityFilter],
+//   (filter: number) => {
+//     console.log(11);
+//     switch (filter) {
+//       case 1:
+//         return 1;
+//       case 2:
+//         return 2;
+//     }
+//   }
+// );
 
 const MapStateToProps = (state: any, props: any): object => {
+  let mallShop = state.mallShop;  
   return {
-    todos: getVisibleTodos(state)
-  }
-}
-
-
-
+    mallShop
+  };
+};
 
 const MapDispatchToProps = (dispatch: any, props: any): object => {
   return {
-    add(){
-      
-      dispatch(addnum(1))
+    add() {
+      dispatch(addnum(1));
     },
-    del(){
-      dispatch(delnum(2))
-    },
-    set(){
-      dispatch(setNum(10))
-    },
-  }
-}
-export default connect(MapStateToProps, MapDispatchToProps)(Parent);
+  };
+};
+
+export default connect(
+  MapStateToProps,
+  MapDispatchToProps
+)(Parent);
 
 // import React, { useMemo, useState } from 'react';
 // import ReactDOM from "react-dom";
