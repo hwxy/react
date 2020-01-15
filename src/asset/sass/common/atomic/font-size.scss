@@ -1,5 +1,7 @@
-@for $i from 12 to 40{
-  .fz#{$i}{
-    font-size: $i * 1px !important;
-  } 
+:global{
+  @for $i from 12 to 40{
+    .fz#{$i}{
+      font-size: $i * 1px !important;
+    } 
+  }
 }

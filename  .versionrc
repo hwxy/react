@@ -1,0 +1,10 @@
+{
+  "types": [
+    {"type":"feat","section":"功能新增"},
+    {"type":"fix","section":"问题修复"},
+    {"type":"docs","section":"文档更新", "hidden": false},
+    {"type":"test","section":"Tests", "hidden": true},
+    {"type":"build","section":"Build System", "hidden": true},
+    {"type":"ci","hidden":true}
+  ]
+}

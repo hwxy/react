@@ -1,7 +1,23 @@
+<<<<<<< HEAD
 {
     "eslint.autoFixOnSave": true,
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     }
+=======
+{   
+    // "eslint.validate": [
+        // "javascript",
+        // "javascriptreact",
+        // "html",
+        // "vue",
+        // "typescript",
+        // "typescriptreact"
+    // ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "javascript.implicitProjectConfig.experimentalDecorators": true
+>>>>>>> dev
 }

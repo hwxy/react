@@ -1,6 +1,2 @@
-import { AriaAttributes } from "react";
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    styleName?: string;
-  }
-}
+declare function importName(a: string, b: string): any
+     

@@ -1,0 +1,18 @@
+{
+  "main": {
+    "files": {
+      "js": [
+        "/static/js/bundle.js",
+        "/static/js/6.chunk.js",
+        "/static/js/main.chunk.js",
+        "/main.e7e221564555526a535f.hot-update.js"
+      ],
+      "map": [
+        "/static/js/bundle.js.map",
+        "/static/js/6.chunk.js.map",
+        "/static/js/main.chunk.js.map",
+        "/main.e7e221564555526a535f.hot-update.js.map"
+      ]
+    }
+  }
+}

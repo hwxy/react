@@ -2,6 +2,9 @@ const path = require("path");
 module.exports = {
   presets: ["react-app"],
   plugins: [
+    "lodash",
+    "@babel/plugin-proposal-export-default-from",
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
     [
       "module-resolver",
       {
@@ -10,18 +13,7 @@ module.exports = {
         }
       }
     ],
-    [
-      "react-css-modules",
-      {
-        generateScopedName: "[name]__[local]___[hash:base64:5]",
-        filetypes: {
-          ".scss": {
-            syntax: "postcss-scss"
-          }
-        }
-      }
-    ],
-    // `style: true` 会加载 less 文件
-    ["import", { libraryName: "antd-mobile", style: "css" }]
+    ["import", { libraryName: "antd-mobile", style: "css" }],
+    "webpack-async-module-name"
   ]
 };

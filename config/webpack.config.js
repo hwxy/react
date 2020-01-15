@@ -36,6 +36,19 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const EntrypointAssetsPlugin = require("./plugin/webpackEntrypointsPlugin");
+
+let env = process.env.NODE_ENV;
+
+let entryPointUrl =
+  env === "production"
+    ? "../build/webpack-entrypoints.json"
+    : "./webpack-entrypoints.json";
+
+const entrypointAssetsPlugin = new EntrypointAssetsPlugin({
+  path: path.resolve(__dirname, entryPointUrl)
+});
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -61,8 +74,35 @@ module.exports = function(webpackEnv) {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
+  // {
+  //   loader: require.resolve("typings-for-css-modules-loader"),
+  //   options: {
+  //     modules: true,
+  //     namedExport: true,
+  //     camelCase: true,
+  //     minimize: true,
+  //     localIdentName: "[local]_[hash:base64:5]",
+  //     ...cssOptions
+  //   }
+  // },
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor, identifying) => {
+    // {
+    //   test: cssModuleRegex,
+    //   use: {
+    //     loader: require.resolve("typings-for-css-modules-loader"),
+    //     options: {
+    //       modules: true,
+    //       namedExport: true,
+    //       camelCase: true,
+    //       minimize: true,
+    //       localIdentName: "[local]_[hash:base64:5]",
+    //       importLoaders: 1,
+    //       sourceMap: isEnvProduction && shouldUseSourceMap,
+    //       getLocalIdent: getCSSModuleLocalIdent
+    //     }
+    //   }
+    // },
     const loaders = [
       isEnvDevelopment && require.resolve("style-loader"),
       isEnvProduction && {
@@ -72,10 +112,15 @@ module.exports = function(webpackEnv) {
           shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
         )
       },
-      {
-        loader: require.resolve("css-loader"),
-        options: cssOptions
-      },
+      identifying !== "sass-module"
+        ? {
+            loader: require.resolve("css-loader"),
+            options: cssOptions
+          }
+        : {
+            loader: require.resolve("typings-for-css-modules-loader"),
+            options: cssOptions
+          },
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
@@ -98,13 +143,6 @@ module.exports = function(webpackEnv) {
           sourceMap: isEnvProduction && shouldUseSourceMap
         }
       }
-      // {
-      //   loader: "px2rem-loader",
-      //   options: {
-      //     remUni: 75,
-      //     remPrecision: 2
-      //   }
-      // }
     ].filter(Boolean);
     if (preProcessor) {
       if (preProcessor === "sass-loader") {
@@ -278,12 +316,11 @@ module.exports = function(webpackEnv) {
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-        "react-native": "react-native-web",
         "@": path.join(__dirname, "..", "src"),
+        "won-core": path.join(__dirname, "..", "src/core"),
         "won-service": path.join(__dirname, "..", "src/won-service"),
         "won-common": path.join(__dirname, "..", "src/won-service/common"),
-        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp"),
-        "won-util": path.join(__dirname, "..", "src/won-service/util")
+        "won-bcomp": path.join(__dirname, "..", "src/won-service/businesscomp")
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -455,13 +492,17 @@ module.exports = function(webpackEnv) {
               test: sassModuleRegex,
               use: getStyleLoaders(
                 {
+                  namedExport: true,
+                  camelCase: true,
+                  minimize: true,
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                   modules: true,
-                  localIdentName: "[name]__[local]___[hash:base64:5]"
-                  // getLocalIdent: getCSSModuleLocalIdent
+                  localIdentName: "[name]__[local]___[hash:base64:5]",
+                  getLocalIdent: getCSSModuleLocalIdent
                 },
-                "sass-loader"
+                "sass-loader",
+                "sass-module"
               )
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
@@ -488,6 +529,7 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      entrypointAssetsPlugin,
       new webpack.ProvidePlugin({
         React: "react"
       }),

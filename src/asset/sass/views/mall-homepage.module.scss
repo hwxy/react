@@ -1,4 +1,3 @@
-
 .toutiao__container{
   display: flex;
   border-radius: 5px;
@@ -16,4 +15,14 @@
 .toutiao-item{
   background: palegreen;
   height: 45px;
+}
+.carousel__empty{
+  width: 100%;
+  padding-top: 75%; 
+}
+
+.carousel{
+  ul{
+    padding-top: 75% !important;
+  }
 }

@@ -1,99 +1,157 @@
 import React from "react";
+// base ui comp
+import { InputItem, Button, WingBlank, Toast } from "antd-mobile";
+//
+import { withRouter, RouteComponentProps } from 'react-router'
+// scss
+import Style from "@/asset/sass/views/mall-login.module.scss";
+// network
+import { apiPost } from "@/core/network"; 
+// util
+import cookie from "@/core/util/cookie";       
+     
+type ContainerProps = RouteComponentProps<any> & {}
 
-import { InputItem, Button, WingBlank, WhiteSpace } from "antd-mobile";
-import "@/asset/sass/views/mall-login.module.scss";
-
-//支持react 和react-native 的表单校验 和element 一样
-// import { createForm } from "rc-form";
-import QQLogin from "won-util/qq";
-
-interface ContainerProps{
-  form?: any,
-  QQBtnShow?: any,
-  onLogin: () => {}
-}
-
-interface ContainerState {
-  value?: any
-}
+interface ContainerState { 
+  account: string,
+  accountError: boolean,
+  password: string, 
+  passwordError: boolean,
+  inputType: any
+}  
 
 
 class Login extends React.Component<ContainerProps, ContainerState> {
-  static state = {
-    value: 1
-  };
-  onReset = () => {};
-  render() {
-    const {
-      QQBtnShow
-    } = this.props;
+  state = {
+    account: "",
+    accountError: false,
+    password: "",
+    passwordError: false,
+    inputType: 'password'
+  }
+  onLogin = () => {
+    let { account, password } = this.state;
+    let { history } = this.props;
+    let isVaildAccount =  this.accountVaild(account);
+    let isVaildPassword =  this.passwordVaild(password);
+    if(!isVaildAccount || !isVaildPassword){
+      if(!isVaildAccount) this.setState({
+        accountError: true
+      });
+      if(!isVaildPassword) this.setState({
+        passwordError: true
+      });
+      return;
+    }
+    apiPost("/api/login", 
+      {
+        phone: account,
+        password   
+      }
+    ).then((res: any) => {
+      if(res){
+        let { status, message } = res
+        if(status == 2){
+          cookie.set('phone', account, { expires: 7, path: '' });
+          cookie.set('sessionToken', res.token, { expires: 7, path: '' });
+          history.push('/shopping')
+        }
+        Toast.info(message);
+      }
+    });
+  }
+  accountVaild = (value: string): boolean => {
+    let regExp: RegExp = /^1[3456789]\d{9}$/;    
+    return regExp.test(value);
+  }
+  onAccountChange = (value: string): void => {
+    let isVaild = this.accountVaild(value);
+    this.setState({
+      accountError: !isVaild,
+    });
+  
+    this.setState({
+      account: value
+    });
+  }
+  onAccountErrorClick = () => {
+    Toast.info('请输入规范手机号');
+  }
+  passwordVaild = (value: string): boolean => {
+    let regExp: RegExp = /\d{6,12}$/;
+    return regExp.test(value);
+  }
+  onPassWordChange = (value: string): void => {
+    let isVaild = this.passwordVaild(value);
+    this.setState({
+      passwordError: !isVaild,
+    });
+    this.setState({
+      password: value
+    });
+  }
+  onPassWordErrorClick = () => {
+    Toast.info('请输入6到12位密码');
+  }
+  onRegister = () => {
+    this.props.history.push('/register')
+  } 
+  renderEye = () => {
     return (
-      <div styleName="container">
+      <div className="icon-99" onClick={() => {
+        let { inputType } = this.state;
+        this.setState({
+          inputType: inputType == 'password' ? 'text' : 'password'
+        })
+      }}></div>
+    )
+  }
+  render() {
+    let { accountError, passwordError, inputType } = this.state;
+    return ( 
+      <div className={Style.container}>     
         <form>
-          <div styleName="title">
-            <i
-              className="icon-161 f-l"
-              onClick={() => {
-                window.history.go(-1);
-              }}
-            />
-            <span className="pr40">登录</span>
+          <div className={Style.tip}>
+            <span className={Style.tip__message}>没有账号？</span>
+            <span className={Style.tip__btn} onClick={this.onRegister}>申请</span>
           </div>
-          <div styleName="login-content">
+          <div className={Style['loginContent']}>
             <InputItem
+              error={accountError}
+              onChange={this.onAccountChange}
               clear
               placeholder="手机号/邮箱"
+              onErrorClick={this.onAccountErrorClick}
             >
               <span className="fz20">账号</span>
             </InputItem>
             <InputItem
+              error={passwordError}
+              onChange={this.onPassWordChange}
               placeholder="请输入6-20位密码"
-              type="password"
+              type={inputType as any}
               maxLength={20}
+              clear
+              extra={this.renderEye()}
+              onErrorClick={this.onPassWordErrorClick}
             >
               <span className="fz20">密码</span>
             </InputItem>
             <WingBlank size="lg">
               <Button
+                onClick={this.onLogin}
                 type="primary"
                 size="large"
                 className="mt30"
-              >
-                登录
+              >        
+              登录
               </Button>
             </WingBlank>
           </div>
-        </form>
-        <div styleName="other-login">
-          <div styleName="login-header">
-            <div styleName="header__line" />
-            <span styleName="header__tip">其他登录方式</span>
-            <div styleName="header__line" />
-          </div>
-          <div styleName="login__application">
-            {QQBtnShow && (
-              <div
-                styleName="application"
-                onClick={e => {
-                  e && e.stopPropagation();
-                  this.props.onLogin();
-                }}
-              >
-                <i className="icon-163" />
-                <WhiteSpace size="xs" />
-                <span styleName="application__tip">QQ</span>
-              </div>
-            )}
-            <div styleName="application">
-              <i className="icon-162" />
-              <WhiteSpace size="xs" />
-              <span styleName="application__tip">微信</span>
-            </div>
-          </div>
-        </div>
+        </form>    
       </div>
     );
   }
 }
-// Login = createForm()(QQLogin(Login));
-export default QQLogin(Login);
+
+export default withRouter(Login);

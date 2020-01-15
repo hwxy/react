@@ -3,6 +3,7 @@
 
 /* Document
    ========================================================================== */
+:global {
 
 *{
   box-sizing: border-box;
@@ -363,4 +364,5 @@ template {
 
 [hidden] {
   display: none;
+}
 }

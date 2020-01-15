@@ -1,121 +1,261 @@
-import React, { RefObject, Component } from 'react';
-import './index.scss';
+import React  from "react";
 
-interface P{}
+import { connect } from "react-redux";
 
-class Shop1 extends Component {
-  componentWillMount(){
-    console.log('shop1 willmount')
-  }
-  componentDidMount(){
-    console.log('shop1  mount')
-    setTimeout(()=>{
-      this.setState({
-        a: 1
-      })
-    }, 5500)  
-  }
+import { addnum } from "@/core/redux/action/mall-shop";
 
-  componentWillReceiveProps(){
-    console.log('shop1 reserve' )
-  }
+// scss
+import Style from "@/asset/sass/views/mall-shopping.module.scss";
 
-  render(){
-    return (
-      <div>
-        111
-        <Shop3/>
-      </div>
-    )
-  }
-}
-class Shop2 extends Component {
-  componentWillMount(){
-    console.log('shop2 willmount')
+import { apiGet } from "@/core/network/index.tsx";
+
+import { createSelector } from "reselect";
+
+class Child1 extends React.Component {
+  state = {
+    value: "1"
+  };
+
+  componentWillMount() {
+    console.log("willMount", 2);
   }
 
-  componentDidMount(){
-    console.log('shop2  mount')
+  componentDidMount() {
+    console.log("didMount", 2);
   }
 
-  componentWillReceiveProps(){
-    console.log('shop2 reserve' )
-  }
-
-  render(){
-    return (
-      <div>
-        <Shop4></Shop4>
-      </div>
-    )
-  }
-}
-class Shop3 extends Component {
-  componentWillMount(){
-    console.log('shop3 willmount')
-  }
-
-  componentDidMount(){
-    console.log('shop3  mount')
-  }
-
-  componentWillReceiveProps(){
-    console.log('shop3 reserve' )
-  }
-
-  render(){
-    return (
-      <div>
-        333
-      </div>
-    )
-  }
-}
-class Shop4 extends Component {
-  componentWillMount(){
-    console.log('shop4 willmount')
-  }
-
-  componentDidMount(){
-    console.log('shop4  mount')
-  }
-
-  componentWillReceiveProps(){
-    console.log('shop4 reserve' )
-  }
-
-  render(){
-    return (
-      <div>444</div>
-    )
-  }
-}
-class Shop extends React.Component<P>{
-  constructor(props: P){
-    super(props);
-  }
-  // componentDidMount(){
-  //   setTimeout(()=>{
-  //     this.setState({
-  //       a: 1
-  //     })
-  //   }, 5500)  
+  // static getDerivedStateFromProps(){
+  //   console.log('DerivedState', 2);
+  //   return null;
   // }
 
-  componentDidUpdate(){
-    console.log(22) ;
-  }
-  render(){
+  // getSnapshotBeforeUpdate(){
+  //   console.log('Snapshot', 2);
+  //   return null;
+  // }
 
-    return (
-      <div>
-          <Shop1></Shop1>
-          <Shop2></Shop2>
-      </div>
-    )
+  componentWillReceiveProps() {
+    console.log("receiveProps", 2);
+  }
+
+  componentDidUpdate() {
+    console.log("didupdate", 2);
+  }
+
+  render() {
+    return <div>{this.state.value}</div>;
+  }
+}
+class Child2 extends React.Component {
+  state = {};
+
+  // componentWillMount(){
+  //   console.log('willMount', 3);
+  // }
+
+  componentDidMount() {
+    console.log("didMount", 3);
+  }
+
+  static getDerivedStateFromProps() {
+    console.log("DerivedState", 3);
+    return null;
+  }
+  getSnapshotBeforeUpdate() {
+    console.log("Snapshot", 3);
+    return null;
+  }
+
+  // componentWillReceiveProps(){
+  //   console.log('receiveProps', 3);
+  // }
+
+  componentDidUpdate() {
+    console.log("didupdate", 3);
+  }
+
+  render() {
+    return <div>333</div>;
   }
 }
 
+const Child3 = () => {
+  return <div>44</div>;
+};
 
+interface S {}
+interface P {
+  add: () => {};
+  del: () => {};
+  [propName: string]: any;
+}
 
-export default Shop;
+class Parent extends React.Component<P, S> {
+  state = {
+    b: 1
+  };
+  constructor(props: any) {
+    super(props);
+  }
+
+  static getDerivedStateFromProps() {
+    console.log("DerivedState", 1);
+    return null;
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log("Snapshot", 1);
+    return null;
+  }
+
+  // componentWillMount(){
+  //   console.log('willMount', 1);
+  // }
+
+  componentDidUpdate() {
+    console.log("didupdate", 1);
+  }
+
+  // componentDidMount(){;
+  //   console.log('didMount', 1);
+
+  // }
+
+  // componentWillReceiveProps(){
+  //   console.log('receiveProps', 1);
+  // }
+
+  render() {
+    let { add, mallShop } = this.props;
+
+    return (
+      <div>
+        <div>
+          {/* <Child1></Child1>
+          <Child2></Child2>
+          <Child3></Child3> */}
+          { mallShop.num }
+          <button onClick={()=>{add()}}>add点击</button>
+        </div>
+      </div>
+    );
+  }
+}
+
+// const getVisibilityFilter = (state: any) => {
+//   console.log(state);
+//   return state.mallShop.counter;
+// };
+//下面的函数是经过包装的
+// export const getVisibleTodos = createSelector(
+//   [getVisibilityFilter],
+//   (filter: number) => {
+//     console.log(11);
+//     switch (filter) {
+//       case 1:
+//         return 1;
+//       case 2:
+//         return 2;
+//     }
+//   }
+// );
+
+const MapStateToProps = (state: any, props: any): object => {
+  let mallShop = state.mallShop;  
+  return {
+    mallShop
+  };
+};
+
+const MapDispatchToProps = (dispatch: any, props: any): object => {
+  return {
+    add() {
+      dispatch(addnum(1));
+    },
+  };
+};
+
+export default connect(
+  MapStateToProps,
+  MapDispatchToProps
+)(Parent);
+
+// import React, { useMemo, useState } from 'react';
+// import ReactDOM from "react-dom";
+
+// class Parent extends React.Component<any, any> {
+//   constructor(props: any) {
+//     super(props);
+//     this.state = {clicks: 0};
+//     this.handleClick = this.handleClick.bind(this);
+//   }
+
+//   handleClick() {
+//     // 当子元素里的按钮被点击时，
+//     // 这个将会被触发更新父元素的 state，
+//     // 即使这个按钮在 DOM 中不是直接关联的后代
+//     this.setState((state: any) => ({
+//       clicks: state.clicks + 1
+//     }));
+//   }
+
+//   render() {
+//     return (
+//       <div onClick={this.handleClick}>
+//         <p>Number of clicks: {this.state.clicks}</p>
+//         <p>
+//           Open up the browser DevTools
+//           to observe that the button
+//           is not a child of the div
+//           with the onClick handler.
+//         </p>
+//         <Modal>
+//           <Child />
+//         </Modal>
+//       </div>
+//     );
+//   }
+// }
+
+// function Child() {
+//   // 这个按钮的点击事件会冒泡到父元素
+//   // 因为这里没有定义 'onClick' 属性
+//   return (
+//     <div className="modal">
+//       <button>Click</button> =》 child 的点击依然会触发parent里面的事件
+//     </div>
+//   );
+// }
+
+// export default Parent;
+// import React, { Component } from 'react';
+// import { Button } from 'antd-mobile';
+
+// class TodoList extends Component <any, any> {
+//   constructor(props: any) {
+//     super(props);
+//     this.handleTest2 = this.handleTest2.bind(this);
+//   }
+//   handleTest = () => {
+//     console.log('test');
+//   }
+
+//   handleTest2() {
+//     console.log('test2');
+//   }
+
+//   componentDidMount() {}
+
+//   render() {
+//     return (
+//       <div className="todo-list">
+//         {this.props.list.map((todo: any, index: any) => (<div key={index}>
+//           <span className="item-text ">{todo}</span>
+//           <Button onClick={() => this.props.deleteTodo(index)} >done</Button>
+//         </div>))}
+//       </div>
+//     );
+//   }
+// }
+
+// export default TodoList;

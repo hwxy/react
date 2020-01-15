@@ -1,74 +1,55 @@
 // comp
 import StateHelp from "won-common/stateHelp";
-
-
 // scss
-import "@/asset/sass/views/mall-homepage.module.scss";
-
+import Style from "@/asset/sass/views/mall-homepage.module.scss";
 // uicomp
 import { WingBlank } from "antd-mobile";
-
 // buscomp
 import Navigation from "won-bcomp/navigation";
-import Search from "won-bcomp/mall-homepage/search/index";
+import Search from "won-bcomp/search";
 import Carousel from "won-common/carousel";
 import Grid from "won-common/grid";
-
-// redux
-import { connect } from 'react-redux';
-import action from '../../core/redux/action/mall-homepage'
-
+import loadingHoc from "won-common/loading";
+// store
+import Store from "./store";
 class HomePage extends StateHelp {
-  GridData: any = null
-  carouselData: any = null
-  constructor(props: any) {
-    super(props);
-
-    // 栅格数据
-    this.GridData = Array.from(new Array(8)).map((_val, i) => ({
-      icon:
-        "https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png",
-      text: `name${i}`
-    }));
-
-    // 轮播图数据
-    this.carouselData = [
-      "AiyWuByWklrrUDlFignR",
-      "TekJlZRVCjLFexlOCuWn",
-      "IJOtIlfsYdTyaDTRVrLI"
-    ].map(val => {
-      return (
-        <a
-          key={val}
-          href="http://www.alipay.com"
+  renderCarousel() {
+    let list = Store.getBanner().map((val, index) => (
+      <a
+        key={index}
+        style={{
+          width: "100%",
+          display: "block"
+        }}
+      >
+        <img
           style={{
-            display: "inline-block",
-            width: "100%",
-            height: 176
+            display: "block",
+            width: "100%"
           }}
-        >
-          <img
-            style={{
-              display: "block"
-            }}
-            alt=""
-            src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-          />
-        </a>
-      );
-    });
+          alt=""
+          src={val.icon}
+        />
+      </a>
+    ));
+          console.log(Store.getBanner());
+          
+    return (
+      <Carousel className={Style["carousel"]} autoplay={false} infinite={false}>
+        {list}
+      </Carousel>
+    );
   }
   render() {
+    let GridData = Store.getQuick();
     return (
       <div>
         <Search />
-        <Carousel autoplay={true} infinite>
-          {this.carouselData}
-        </Carousel>
-        <Grid data={this.GridData} />
+        {this.renderCarousel()}
+        <Grid data={GridData} />
         <WingBlank size="md">
-          <div styleName="toutiao__container">
-            <div styleName="toutiao__title">呼呼头条</div>
+          <div className={Style["toutiao__container"]}>
+            <div className={Style["toutiao__title"]}>呼呼头条</div>
             <Carousel
               vertical
               dots={false}
@@ -77,9 +58,9 @@ class HomePage extends StateHelp {
               autoplay={true}
               infinite
             >
-              <div styleName="toutiao-item">carousel 1</div>
-              <div styleName="toutiao-item">carousel 2</div>
-              <div styleName="toutiao-item">carousel 3</div>
+              <div className={Style["toutiaoItem"]}>carousel 1</div>
+              <div className={Style["toutiaoItem"]}>carousel 2</div>
+              <div className={Style["toutiaoItem"]}>carousel 3</div>
             </Carousel>
           </div>
         </WingBlank>
@@ -88,17 +69,7 @@ class HomePage extends StateHelp {
     );
   }
 }
-const mapStateToProps = () => {
-  return {
-    a:1
-  };
-},
-mapDispatchToProps = (dispatch: any) => {
-  return {
-    init: () => {
-      return dispatch(action());
-    }
-  };
-};
 
-export default HomePage;
+export default loadingHoc(async () => {
+  await Store.init();
+}, HomePage);

@@ -6,3 +6,5 @@
 * sass
 * BEM 命名
 * eslint prettier 和 react-app
+* typings-for-css-modules-loader `必须要生成.d.ts文件，才能使用css-module`
+  <!-- // PUBLIC_URL=https://hwcdn.hwaxy.cn -->
